@@ -1,12 +1,11 @@
-import projectFactory from './modules/project'
+import { projectFactory } from './modules/project'
 
+const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 
-const EXISTING_DATA = JSON.parse(localStorage.getItem('mainProjects')) || []
-
+let arr = []
 let priorities = ['High', 'Medium', 'Low']
-let submitProject = document.getElementById('submit')
-
 const content = document.getElementById('content')
+
 
 const projectForm = () => {
     let projectForm = document.createElement('div')
@@ -48,25 +47,24 @@ const projectForm = () => {
     content.appendChild(projectForm)
 }
 
-const projectConstructor = (e) => {
-    e.preventDefault()
-
-  let newProject = projectFactory(
-    document.getElementById('title').value,
-    document.getElementById('date').value,
-    document.getElementById('priority').value,
-    document.getElementById('desc').value
-  )
-
-    EXISTING_DATA.push(newProject)
-    localStorage.setItem('mainProjects', JSON.stringify(EXISTING_DATA))
+const projectConstructor = (event) => {
+    let project = projectFactory(
+        document.getElementById('title').value,
+        document.getElementById('desc').value,
+        document.getElementById('date').value,
+        document.getElementById('priority').value,
+    )
+    EXISTING_DATA.push(project)
+    localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+    location.reload()
 }
 
 
-    submitProject.addEventListener('click', ()=>{
-        console.log()
-    })
+const createProject = () => {
+    const newProBtn = document.getElementById('submit')
+    newProBtn.addEventListener('click', projectConstructor)
+}
 
 
 
-export { projectForm, projectConstructor}
+export { projectForm, createProject }

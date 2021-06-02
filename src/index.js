@@ -1,5 +1,7 @@
 import './main.scss';
 
-import { projectForm } from './dom'
+import { projectForm, createProject } from './dom'
 
 projectForm()
+createProject()
+
