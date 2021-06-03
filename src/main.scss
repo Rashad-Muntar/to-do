@@ -8,20 +8,6 @@ body {
     margin: 0;
 }
 
-.projectForm {
-    padding: 40px;
-    background-color: white;
-    width: 100vw;
-}
-.formBackground {
-    padding: 40px;
-    background-color: grey;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    border-radius: 5%;
-}
-
 header {
  background-color:  #dc3545 ;
  padding: 0;
@@ -46,4 +32,6 @@ header {
     color: black;
 }
 
-
+form {
+    padding:20px;
+}

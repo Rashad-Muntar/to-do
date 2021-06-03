@@ -14,7 +14,7 @@
                 <ul class="navbar-nav flex-row d-flex  ">
                   <div class='headerGroupOne d-flex col-4'>
                      
-                    <button type="button" class="btn " id="todo-link ">   
+                    <button type="button" class="btn " id="menu-link ">   
                         <li class="nav-item d-flex">
                             <i class="fas fa-bars "></i>
                       </li>
@@ -36,7 +36,7 @@
                                 <i class="fas fa-calendar-check"></i>
                             </li>
                         </button>
-                        <button type="button" class="btn" id="addForm-link">   
+                        <button type="button" class="btn" id="addForm-link" data-bs-toggle="modal" data-bs-target="#exampleModal">   
                             <li class="nav-item p-2">
                                 <i class="fas fa-plus"></i> 
                             </li>
@@ -49,13 +49,64 @@
             </div>
           </nav>
     </header>
+
+  
     <div class="">
         <!-- <div id="leftSideBar"></div> -->
         <div id="content"></div>
     </div>
+
+
+<!-- Button trigger modal -->
+
+  <div>
+
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="d-flex flex-column ">
+                <div>
+     
+                 <label for="title" class="d-flex form-label">Title</label>
+                 <input type="text" placeholder="Enter Project Title" id="title">
+             </div> 
+                 <div>
+                 <label for="date" class="d-flex form-label">Date</label>
+                 <input type="date" id="date">
+             </div>  
+             <div>
+                 <label for="desc" class="d-flex form-label">Description</label>
+                 <textarea id="desc"></textarea>
+             </div>
+             <div>
+                 <label for="priority" class="d-flex form-label">Priority</label>
+                 <select  class="dropdown" id="priority">
+                         <option value= 'High'>High </option>
+                         <option value= 'Medium'>Medium</option>
+                         <option value= 'Low'>Low</option>
+                 </select>
+             </div>
+           
+     </form>  
+    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" id='submit' class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
    
     <footer></footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/0c2dafdccb.js" crossorigin="anonymous"></script>
