@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack"
+    "build": "webpack --mode development --watch"
   },
   "author": "Rashad and Railon",
   "license": "ISC",

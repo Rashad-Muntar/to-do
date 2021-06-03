@@ -8,6 +8,8 @@ const content = document.getElementById('content')
 
 
 const projectForm = () => {
+
+
     let projectForm = document.createElement('div')
     let form = document.createElement('form')
     let input = document.createElement('input')
@@ -15,6 +17,9 @@ const projectForm = () => {
     let select = document.createElement('select')
     let textarea = document.createElement('textarea')
     let submit = document.createElement('input')
+
+    projectForm.classList.add('projectForm', 'd-flex', 'flex-column', 'justify-content-center');
+    form.classList.add('formBackground', 'd-flex', 'flex-column', 'col-4', 'justify-content-center');
 
     input.setAttribute('type', 'text')
     date.setAttribute('type', 'date')
@@ -27,16 +32,9 @@ const projectForm = () => {
     select.setAttribute('id', 'priority')
     textarea.setAttribute('id', 'desc')
     submit.setAttribute('id', 'submit')
-
-
-    for(let i  = 0; i  < priorities.length; i++){
-        let option = document.createElement('option')
-        option.value = i
-        option.text = priorities[i]
-
-        select.appendChild(option)
-    }
-
+ 
+     
+ 
     form.appendChild(input)
     form.appendChild(date)
     form.appendChild(textarea)
@@ -47,7 +45,7 @@ const projectForm = () => {
     content.appendChild(projectForm)
 }
 
-const projectConstructor = (event) => {
+const projectConstructor = () => {
     let project = projectFactory(
         document.getElementById('title').value,
         document.getElementById('desc').value,
@@ -64,6 +62,8 @@ const createProject = () => {
     const newProBtn = document.getElementById('submit')
     newProBtn.addEventListener('click', projectConstructor)
 }
+
+
 
 
 
