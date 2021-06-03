@@ -1,8 +1,11 @@
 import './main.scss';
 
-import { createProject } from './dom'
+import { createProject, displayProjects, allProjects } from './dom'
 
 createProject()
+displayProjects()
+allProjects()
+
 
 // const projectForm = () => {
 

@@ -3,7 +3,7 @@ import { projectFactory } from './modules/project'
 const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 
 const content = document.getElementById('content')
-
+const sideBarproject = document.querySelector('.projects')
 
 // const projectForm = () => {
 
@@ -60,9 +60,21 @@ const createProject = () => {
     newProBtn.addEventListener('click', projectConstructor)
 }
 
+const allProjects = () => {
+    for(let i = 0; i < EXISTING_DATA.length; i++){
+        let projectTitle = document.createElement('p')
+        projectTitle.innerHTML = EXISTING_DATA[i].title
+        sideBarproject.appendChild(projectTitle)
+    }
+}
+
+const displayProjects = () => {
+    document.querySelector('.project').addEventListener('click', (e) => {
+        document.querySelector('.projectList').classList.toggle('hide')
+    })
+}
 
 
 
-
-export { createProject }
+export { createProject, displayProjects, allProjects}
 
