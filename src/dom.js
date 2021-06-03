@@ -4,44 +4,8 @@ const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 
 const content = document.getElementById('content')
 const sideBarproject = document.querySelector('.projects')
-
-// const projectForm = () => {
-
-
-//     let projectForm = document.createElement('div')
-//     let form = document.createElement('form')
-//     let input = document.createElement('input')
-//     let date = document.createElement('input')
-//     let select = document.createElement('select')
-//     let textarea = document.createElement('textarea')
-//     let submit = document.createElement('input')
-
-//     projectForm.classList.add('projectForm', 'd-flex', 'flex-column', 'justify-content-center');
-//     form.classList.add('formBackground', 'd-flex', 'flex-column', 'col-4', 'justify-content-center');
-
-//     input.setAttribute('type', 'text')
-//     date.setAttribute('type', 'date')
-//     submit.setAttribute('type', 'submit')
-//     submit.value = 'New project'
-//     input.setAttribute('placeholder', 'Enter Project Title')
-
-//     input.setAttribute('id', 'title')
-//     date.setAttribute('id', 'date')
-//     select.setAttribute('id', 'priority')
-//     textarea.setAttribute('id', 'desc')
-//     submit.setAttribute('id', 'submit')
- 
-     
- 
-//     form.appendChild(input)
-//     form.appendChild(date)
-//     form.appendChild(textarea)
-//     form.appendChild(select)
-//     form.appendChild(submit)
-   
-//     projectForm.appendChild(form)
-//     content.appendChild(projectForm)
-// }
+const mainContent = document.getElementById('right-main')
+let prTitle = document.getElementById('prTitle')
 
 const projectConstructor = () => {
     let project = projectFactory(
@@ -62,7 +26,8 @@ const createProject = () => {
 
 const allProjects = () => {
     for(let i = 0; i < EXISTING_DATA.length; i++){
-        let projectTitle = document.createElement('p')
+        let projectTitle = document.createElement('div')
+        projectTitle.classList.add('prs')
         projectTitle.innerHTML = EXISTING_DATA[i].title
         sideBarproject.appendChild(projectTitle)
     }
@@ -74,7 +39,22 @@ const displayProjects = () => {
     })
 }
 
+const mainProjectDisplay = () => {
+    const allSidebarprojects = document.querySelectorAll('.prs')
+    for(let i = 0; i < allSidebarprojects.length; i++){
+        console.log(allSidebarprojects[i])
+        allSidebarprojects[i].addEventListener('click', ()=>{
+            let projectTitle = document.createElement('h3')
+            projectTitle.setAttribute('id', 'prTitle')
+            projectTitle.innerHTML = allSidebarprojects[i].textContent
+            if (document.body.contains(document.querySelector('#prTitle'))) {
+                document.querySelector('#prTitle').remove();
+              }
+              mainContent.appendChild(projectTitle)
+        })
+    }
+}
 
 
-export { createProject, displayProjects, allProjects}
+export { createProject, displayProjects, allProjects, mainProjectDisplay}
 
