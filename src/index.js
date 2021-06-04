@@ -1,6 +1,14 @@
 import './main.scss';
 
-import { createProject, displayProjects, allProjects, todoConstructor, createTodo, mainProjectDisplay} from './dom'
+import { createProject, 
+         displayProjects, 
+         allProjects, 
+         todoConstructor, 
+         createTodo, 
+         mainProjectDisplay,
+        deleteEvent,
+        todoFormDisplay
+        } from './dom'
 
 createProject()
 displayProjects()
@@ -8,3 +16,5 @@ allProjects()
 todoConstructor()
 createTodo()
 mainProjectDisplay()
+deleteEvent()
+todoFormDisplay()

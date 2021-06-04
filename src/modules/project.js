@@ -13,4 +13,10 @@ const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
     }
  }
 
-export  { projectFactory }
+ function deleteProject(index){
+    EXISTING_DATA.splice(index, 1)
+    localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+    location.reload()
+  }
+
+export  { projectFactory, deleteProject}
