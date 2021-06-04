@@ -6,7 +6,7 @@ const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 const content = document.getElementById('content')
 const sideBarproject = document.querySelector('.projects')
 const mainContent = document.getElementById('projectTitle')
-// let prTitle = document.getElementById('prTitle')
+const todosWrapper = document.getElementById('todosWrapper')
 
 const projectConstructor = () => {
     let project = projectFactory(
@@ -43,6 +43,39 @@ const displayProjects = () => {
 }
 
 
+const mainProjectDisplay = () => {
+    const allSidebarprojects = document.querySelectorAll('.prs')
+    for(let i = 0; i < allSidebarprojects.length; i++){
+        allSidebarprojects[i].addEventListener('click', ()=>{
+            let projectTitle = document.createElement('h3')
+            projectTitle.setAttribute('id', 'prTitle')
+            projectTitle.classList.add('p-5')
+            projectTitle.innerHTML = allSidebarprojects[i].textContent
+            if (document.body.contains(document.querySelector('#prTitle'))) {
+                document.querySelector('#prTitle').remove();
+              }
+              mainContent.appendChild(projectTitle)
+              document.querySelector('.todoAddBtn').classList.remove('hide')
+              for( let j = 0; j < EXISTING_DATA.length; j++){
+
+                  if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
+                    for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
+                        console.log(EXISTING_DATA[j].todos[k].title)
+                        let todoTitle = document.createElement('div')
+                        todoTitle.classList.add('todoTitle')
+                        todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
+                        todosWrapper.appendChild(todoTitle)
+                    }
+                  }
+              }
+              
+            })
+    }
+}
+
+
+
+// todo starts here
 const todoConstructor = () => {
     let newToDo = todoFactory(
         document.getElementById('title').value,
@@ -72,23 +105,7 @@ const createTodo = () => {
 
 
 
-const mainProjectDisplay = () => {
-    const allSidebarprojects = document.querySelectorAll('.prs')
-    for(let i = 0; i < allSidebarprojects.length; i++){
-        console.log(allSidebarprojects[i])
-        allSidebarprojects[i].addEventListener('click', ()=>{
-            let projectTitle = document.createElement('h3')
-            projectTitle.setAttribute('id', 'prTitle')
-            projectTitle.classList.add('p-5')
-            projectTitle.innerHTML = allSidebarprojects[i].textContent
-            if (document.body.contains(document.querySelector('#prTitle'))) {
-                document.querySelector('#prTitle').remove();
-              }
-              mainContent.appendChild(projectTitle)
-              document.querySelector('.todoAddBtn').classList.remove('hide')
-            })
-    }
-}
+
 
 
 
