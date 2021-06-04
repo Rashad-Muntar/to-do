@@ -68,14 +68,60 @@
 
                 </div>
             </div>
+<!-- TODO List Modal -->
+            <div id='main-right'>
 
-            <div id='right-main'>
+                <div id="projectTitle"></div>
+ 
+                <button type="button" class="todoAddBtn btn btn-primary hide" id="addForm-link" data-bs-toggle="modal" data-bs-target="#addTodoModal">  
+                    <i class="fas fa-plus "></i>New To Do</button>
+                   
+                <div class="modal fade" id="addTodoModal" tabindex="-1" aria-labelledby="addTodoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addTodoModalLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="d-flex flex-column ">
+                                <div>
+                     
+                                 <label for="title" class="d-flex form-label">Title</label>
+                                 <input type="text" placeholder="Enter Project Title" id="title">
+                             </div> 
+                                 <div>
+                                 <label for="date" class="d-flex form-label">Date</label>
+                                 <input type="date" id="date">
+                             </div>  
+                             <div>
+                                 <label for="desc" class="d-flex form-label">Description</label>
+                                 <textarea id="desc"></textarea>
+                             </div>
+                             <div>
+                                 <label for="priority" class="d-flex form-label">Priority</label>
+                                 <select  class="dropdown" id="priority">
+                                         <option value= 'High'>High </option>
+                                         <option value= 'Medium'>Medium</option>
+                                         <option value= 'Low'>Low</option>
+                                 </select>
+                             </div>
+                           
+                     </form>  
+                    </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" id='submit' class="btn btn-primary">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
             </div>
         </div>
     </main>
        
-
+<!-- Project Modal -->
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -89,19 +135,19 @@
                 <div>
      
                  <label for="title" class="d-flex form-label">Title</label>
-                 <input type="text" placeholder="Enter Project Title" id="title">
+                 <input type="text" placeholder="Enter Project Title" id="prtitle">
              </div> 
                  <div>
                  <label for="date" class="d-flex form-label">Date</label>
-                 <input type="date" id="date">
+                 <input type="date" id="prdate">
              </div>  
              <div>
                  <label for="desc" class="d-flex form-label">Description</label>
-                 <textarea id="desc"></textarea>
+                 <textarea id="prdesc"></textarea>
              </div>
              <div>
                  <label for="priority" class="d-flex form-label">Priority</label>
-                 <select  class="dropdown" id="priority">
+                 <select  class="dropdown" id="prpriority">
                          <option value= 'High'>High </option>
                          <option value= 'Medium'>Medium</option>
                          <option value= 'Low'>Low</option>
@@ -112,7 +158,7 @@
     </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" id='submit' class="btn btn-primary">Save</button>
+          <button type="submit" id='prsubmit' class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-const projectFactory = (title, description, date, priority, completed) => {
+const projectFactory = (title, description, date, priority, completed, todos) => {
     
-    return {title, description, date, priority, completed}
+    return {title, description, date, priority, completed, todos}
 }
 
 const defaultProject = projectFactory('Default Project', 'Default project one', '08/02/2021', 'Medium', false );
