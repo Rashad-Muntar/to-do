@@ -2,7 +2,7 @@ import { projectFactory, deleteProject } from './modules/project'
 import { todoFactory } from './modules/todo'
 
 const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
-
+const projectArr = []
 const content = document.getElementById('content')
 const sideBarproject = document.querySelector('.projects')
 const mainContent = document.getElementById('projectTitle')
@@ -29,15 +29,13 @@ const projectConstructor = () => {
         false,
         []
     )
+    projectArr.push(project)
     EXISTING_DATA.push(project)
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-    location.reload()
+    mainProjectDisplay()
 }
 
 const createProject = (e) => {
-    if(e){
-        e.preventDefault()
-    }
     const newProBtn = document.getElementById('prsubmit')
     newProBtn.addEventListener('click', projectConstructor)
 }
@@ -110,7 +108,6 @@ const deleteEvent = () => {
                 e.stopPropagation()
                 console.log('del deleted')
                 deleteProject(i)
-                
             })
         }
 
@@ -121,10 +118,8 @@ const deleteEvent = () => {
 
 
 // todo starts here
-const todoConstructor = (e) => {
-    if(e){
-        e.preventDefault()
-    }
+const todoConstructor = () => {
+
     let newToDo = todoFactory(
         document.getElementById('title').value,
         document.getElementById('desc').value,
@@ -139,16 +134,32 @@ const todoConstructor = (e) => {
 
             if( EXISTING_DATA[i].title === projectTitle) {
                 EXISTING_DATA[i].todos.push(newToDo)
+                mainProjectDisplay()
                 localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+                
+                for( let j = 0; j < EXISTING_DATA.length; j++){
+                    if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
+                        let last = EXISTING_DATA[j].todos.pop()
+                          let todoTitle = document.createElement('p')
+                          todoTitle.textContent = last.title
+                          if(document.getElementById('todosContainer')){
+                            document.getElementById('todosContainer').appendChild(todoTitle)
+                          }
+
+                    }
+                }
             }
         } 
     }
-    mainProjectDisplay()
 }
 
-const createTodo = (e) => {
+const createTodo = () => {
     const todoBtn = document.getElementById('submit')
-    todoBtn.addEventListener('click', todoConstructor)
+    todoBtn.addEventListener('click', (e)=>{
+        e.preventDefault()
+        todoConstructor()
+    } )
+    mainProjectDisplay()
 }
 
 
