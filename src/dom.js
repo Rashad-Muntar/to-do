@@ -9,9 +9,13 @@ const mainContent = document.getElementById('projectTitle')
 const todosWrapper = document.getElementById('todosWrapper')
 const todoFormBtn = document.getElementById('todoForm-link')
 const todoForm = document.querySelector('.newTodoForm')
-let todos = document.querySelector('#todosContainer, p')
-// const todosContainer = document.createElement('div')
-// todosContainer.setAttribute('id', 'todosContainer') 
+let todoTitleDisplay = document.createElement('p')
+let todoDescription = document.createElement('p')
+let todoDate = document.createElement('p')
+
+
+todoTitleDisplay.classList.add('todoTitleDisplay')
+
 
 const todoFormDisplay = () => {
     todoFormBtn.addEventListener('click', () => {
@@ -57,11 +61,13 @@ const allProjects = () => {
         projectWrapper.appendChild(delBtn)
         sideBarproject.appendChild(projectWrapper)
     }
+    
 }
 
 const displayProjects = () => {
     document.querySelector('.project').addEventListener('click', (e) => {
         document.querySelector('.projectList').classList.toggle('hide')
+        
     })
 }
 
@@ -84,14 +90,35 @@ const mainProjectDisplay = () => {
               if (document.getElementById('todosWrapper').contains(document.getElementById('todosContainer'))) {
                 document.querySelector('#todosContainer').innerHTML = ''
               }
+            //   if (document.getElementById('todoDisplay').contains(document.getElement('todoTitle'))) {
+            //     document.getElementById('todoDisplay').innerHTML = ''
+            //     }
 
               for( let j = 0; j < EXISTING_DATA.length; j++){
                   if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
                     for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
                         let todoTitle = document.createElement('p')
                         todoTitle.classList.add('todoTitle')
+
+
                         todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
                        document.getElementById('todosContainer').appendChild(todoTitle)
+                         todoTitle.addEventListener('click', () => {
+
+
+                           todoTitleDisplay.innerHTML= EXISTING_DATA[j].todos[k].title
+                           todoDescription.innerHTML= EXISTING_DATA[j].todos[k].description
+                           todoDate.innerHTML= EXISTING_DATA[j].todos[k].date
+
+                           document.getElementById('todoDisplay').appendChild(todoTitleDisplay)
+                           document.getElementById('todoDisplay').appendChild(todoDate)
+                           document.getElementById('todoDisplay').appendChild(todoDescription)
+
+                           document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'))
+
+                       })
+                        
+
                     }
                   }
               }
@@ -161,11 +188,6 @@ const createTodo = () => {
     } )
     mainProjectDisplay()
 }
-
-
-
-
-
 
 
 export { createProject, 
