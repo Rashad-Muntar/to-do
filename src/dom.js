@@ -50,7 +50,8 @@ const allProjects = () => {
         let projectTitle = document.createElement('div')
         let delBtn = document.createElement('div')
 
-        delBtn.innerHTML = 'X'
+        // delBtn.innerHTML = 'X'
+        delBtn.classList.add('far', 'fa-trash-alt')
         projectWrapper.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle')
         delBtn.classList.add('projectDelBtn', 'btn-danger', 'col-3', 'd-flex', 'justify-content-center')
         projectTitle.classList.add('prs')
@@ -90,19 +91,24 @@ const mainProjectDisplay = () => {
               if (document.getElementById('todosWrapper').contains(document.getElementById('todosContainer'))) {
                 document.querySelector('#todosContainer').innerHTML = ''
               }
-            //   if (document.getElementById('todoDisplay').contains(document.getElement('todoTitle'))) {
-            //     document.getElementById('todoDisplay').innerHTML = ''
-            //     }
 
               for( let j = 0; j < EXISTING_DATA.length; j++){
                   if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
                     for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
                         let todoTitle = document.createElement('p')
+                        let todoDiv = document.createElement('div')
+                        let delIcon = document.createElement('span')
+
+                        delIcon.classList.add('far', 'fa-trash-alt', 'todoDelIcon')
                         todoTitle.classList.add('todoTitle')
+                        todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between' ,'col-12')
 
 
                         todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
-                       document.getElementById('todosContainer').appendChild(todoTitle)
+                        todoDiv.appendChild(todoTitle)
+                        todoDiv.appendChild(delIcon)
+
+                       document.getElementById('todosContainer').appendChild(todoDiv)
                          todoTitle.addEventListener('click', () => {
 
 
@@ -137,11 +143,7 @@ const deleteEvent = () => {
                 deleteProject(i)
             })
         }
-
 }
-
-
-
 
 
 // todo starts here
@@ -190,6 +192,31 @@ const createTodo = () => {
 }
 
 
+let cont = document.getElementById('todoDiv')
+let prs = document.querySelectorAll(".prs")
+const todoDelete = () => {
+
+    for(let i = 0; i < prs.length; i++){
+        if(prs[i].textContent.clicked == true){
+            console.log("prs is clicked")
+        }
+    }
+    // if (document.querySelectorAll(".prs").clicked == true){
+    //     // let todoDelBtn = document.querySelector('.todoDelIcone')
+        
+    //     // console.log(todoDelBtn)
+    //     // for(let i = 0; i < delbtns.length; i += 1){
+    //     //     console.log("todo do deleted")
+    //     //     // delbtns[i].addEventListener('click', (e)=>{
+    //     //     //     e.stopPropagation()
+    //     //     //     console.log('del deleted')
+    //     //     //     deleteTodo(i)
+    //     //     // })
+    //     // }
+    // }
+}
+
+
 export { createProject, 
         displayProjects, 
         allProjects, 
@@ -197,6 +224,7 @@ export { createProject,
         createTodo, 
         mainProjectDisplay,
         deleteEvent,
-        todoFormDisplay
+        todoFormDisplay,
+        todoDelete,
     }
 

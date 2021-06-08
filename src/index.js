@@ -7,7 +7,8 @@ import { createProject,
          createTodo, 
          mainProjectDisplay,
         deleteEvent,
-        todoFormDisplay
+        todoFormDisplay,
+        todoDelete
         } from './dom'
 
 createProject()
@@ -18,3 +19,4 @@ createTodo()
 mainProjectDisplay()
 deleteEvent()
 todoFormDisplay()
+todoDelete()
