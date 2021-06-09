@@ -77,8 +77,13 @@ main{
             .projects{
                 padding-left: 20px;
             }
+  
+
         }
 
+        .fa-trash-alt:hover {
+            color:red
+        }
 
         #main-right {
           background-color: white;   
@@ -89,6 +94,11 @@ main{
           justify-items: center;
           align-items: center;
         }
+        
+        #prTitle {
+         font-weight: bold;
+        }
+
         .todoAddBtn  {
             margin: 10px;
             
@@ -103,16 +113,49 @@ main{
             align-content: center;
             background: rgb(226, 226, 226);
         }
-
+         
   
     }
 }
 
-.projectTitle{
-    margin-bottom: 8px;
+.todoDiv {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;   
+    padding: 10px; 
+    background: rgb(226, 226, 226);
 }
 
+ .todoTitle {
+     padding: 5px;
+     margin: 0 0 0 0;
+     display: flex;
+     justify-content: center;
+     align-content: center;
+ }
 
+ .todoDelIcon {
+    padding: 5px;
+    margin: 0 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-content: center; 
+ }
+
+ #todoDisplay {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;   
+    padding: 10px; 
+    margin: 10px 0 0 30px;
+ }
+
+ #todoDisplay p {
+
+    padding: 10px; 
+
+ }
 // public classes
 .hide{
     display: none;
