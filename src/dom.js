@@ -170,7 +170,7 @@ const todoConstructor = () => {
                 EXISTING_DATA[i].todos.push(newToDo)
                 mainProjectDisplay()
                 localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-                
+                document.querySelector('form').reset()
                 for( let j = 0; j < EXISTING_DATA.length; j++){
                     if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
                         let last = EXISTING_DATA[j].todos.pop()
@@ -180,7 +180,6 @@ const todoConstructor = () => {
                           if(document.getElementById('todosContainer')){
                             document.getElementById('todosContainer').appendChild(todoTitle)
                           }
-
                     }
                 }
             }
