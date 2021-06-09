@@ -1,5 +1,5 @@
 import { projectFactory, deleteProject } from './modules/project'
-import { todoFactory } from './modules/todo'
+import { todoFactory, deleteTodo } from './modules/todo'
 
 const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 const projectArr = []
@@ -99,7 +99,8 @@ const mainProjectDisplay = () => {
                         let todoDiv = document.createElement('div')
                         let delIcon = document.createElement('span')
 
-                        delIcon.classList.add('far', 'fa-trash-alt', 'todoDelIcon')
+                        delIcon.innerHTML = 'X'
+                        delIcon.classList.add('todoDelIcon')
                         todoTitle.classList.add('todoTitle')
                         todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between' ,'col-12')
 
@@ -192,29 +193,26 @@ const createTodo = () => {
 }
 
 
-let cont = document.getElementById('todoDiv')
-let prs = document.querySelectorAll(".prs")
 const todoDelete = () => {
-
-    for(let i = 0; i < prs.length; i++){
-        if(prs[i].textContent.clicked == true){
-            console.log("prs is clicked")
-        }
+    let pr = document.querySelectorAll(".prs")
+    for(let i = 0; i < pr.length; i++){
+            pr[i].addEventListener('click', ()=>{
+                if(document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))){
+                    let todoDelBtn = document.querySelectorAll('.todoDelIcon')
+                    for(let j = 0; j < todoDelBtn.length; j++){
+                        todoDelBtn[j].addEventListener('click', ()=>{
+                            deleteTodo(j)
+                            console.log('todo is deleted')
+                        })
+                        
+                    }
+                }
+                    
+                
+            })
+            
+        }  
     }
-    // if (document.querySelectorAll(".prs").clicked == true){
-    //     // let todoDelBtn = document.querySelector('.todoDelIcone')
-        
-    //     // console.log(todoDelBtn)
-    //     // for(let i = 0; i < delbtns.length; i += 1){
-    //     //     console.log("todo do deleted")
-    //     //     // delbtns[i].addEventListener('click', (e)=>{
-    //     //     //     e.stopPropagation()
-    //     //     //     console.log('del deleted')
-    //     //     //     deleteTodo(i)
-    //     //     // })
-    //     // }
-    // }
-}
 
 
 export { createProject, 
@@ -225,6 +223,6 @@ export { createProject,
         mainProjectDisplay,
         deleteEvent,
         todoFormDisplay,
-        todoDelete,
+        todoDelete
     }
 
