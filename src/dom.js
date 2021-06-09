@@ -3,6 +3,7 @@ import { todoFactory, deleteTodo } from './modules/todo'
 
 const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 const projectArr = []
+const content = document.getElementById('content')
 const sideBarproject = document.querySelector('.projects')
 const mainContent = document.getElementById('projectTitle')
 const todosWrapper = document.getElementById('todosWrapper')
@@ -14,8 +15,8 @@ let todoDate = document.createElement('p')
 
 
 todoTitleDisplay.classList.add('todoTitleDisplay')
-mainContent.classList.add('p-5', 'col-8')
-todosWrapper.classList.add('col-12', 'p-4')
+
+
 const todoFormDisplay = () => {
     todoFormBtn.addEventListener('click', () => {
         todoForm.classList.toggle('hide')
@@ -50,7 +51,7 @@ const allProjects = () => {
         let delBtn = document.createElement('div')
 
         delBtn.classList.add('far', 'fa-trash-alt')
-        projectWrapper.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle', 'mb-4')
+        projectWrapper.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle')
         delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center')
         projectTitle.classList.add('prs')
 
@@ -89,24 +90,18 @@ const mainProjectDisplay = () => {
               if (document.getElementById('todosWrapper').contains(document.getElementById('todosContainer'))) {
                 document.querySelector('#todosContainer').innerHTML = ''
               }
-              
 
               for( let j = 0; j < EXISTING_DATA.length; j++){
-                  
-                if (document.querySelector('#prTitle').textContent != EXISTING_DATA[j].title) {
-                    document.getElementById('todoDisplay').innerHTML = ''
-                  }  
-
-                if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
+                  if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
                     for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
                         let todoTitle = document.createElement('p')
                         let todoDiv = document.createElement('div')
                         let delIcon = document.createElement('span')
 
-                        
-                        delIcon.classList.add('todoDelIcon', 'far', 'fa-trash-alt')
+                        delIcon.classList.add('far', 'fa-trash-alt')
+                        delIcon.classList.add('todoDelIcon')
                         todoTitle.classList.add('todoTitle')
-                        todoDiv.classList.add('todoDiv', 'col-12')
+                        todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between' ,'col-12')
 
 
                         todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
@@ -170,16 +165,16 @@ const todoConstructor = () => {
                 EXISTING_DATA[i].todos.push(newToDo)
                 mainProjectDisplay()
                 localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-                document.querySelector('form').reset()
+                
                 for( let j = 0; j < EXISTING_DATA.length; j++){
                     if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
                         let last = EXISTING_DATA[j].todos.pop()
                           let todoTitle = document.createElement('p')
-                          todoTitle.classList.add('todoTitle')
                           todoTitle.textContent = last.title
                           if(document.getElementById('todosContainer')){
                             document.getElementById('todosContainer').appendChild(todoTitle)
                           }
+
                     }
                 }
             }
@@ -192,8 +187,9 @@ const createTodo = () => {
     todoBtn.addEventListener('click', (e)=>{
         e.preventDefault()
         todoConstructor()
+        document.querySelector('form').classList.add('hide')
     } )
-    mainProjectDisplay()
+    
 }
 
 
