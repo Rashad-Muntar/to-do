@@ -159,6 +159,7 @@ const todoConstructor = () => {
         document.getElementById('desc').value,
         document.getElementById('date').value,
         document.getElementById('priority').value,
+        
         false,
         []
     )
