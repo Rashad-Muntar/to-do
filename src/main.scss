@@ -90,8 +90,9 @@ main{
         }
 
         .fa-trash-alt:hover {
-            color:red
+            color: rgb(209, 80, 70)
         }
+     
 
         #main-right {
           background-color: white;   
@@ -130,18 +131,15 @@ main{
     margin: 0 auto;
 }
 
-// #todosContainer{
-//     border-right: 3px solid gray;
-//     margin-right: 20px;
-// }
+
 
 .todoDiv {
     margin: 10px;
     display: flex;
     justify-content: space-between;
     align-content: center;   
-    padding: 10px; 
-    background: rgb(226, 226, 226);
+    padding: 10px;
+    background-color: rgb(233, 233, 233); 
 }
 
  .todoTitle {
@@ -150,6 +148,7 @@ main{
      display: flex;
      justify-content: center;
      align-content: center;
+     cursor: pointer;
  }
 
  .todoDelIcon {
@@ -157,7 +156,13 @@ main{
     margin: 0 20px 0 0;
     display: flex;
     justify-content: center;
-    align-content: center; 
+    align-content: center;
+    cursor: pointer; 
+ }
+
+ .newTodoForm{
+     display: flex;
+     justify-content: space-around;
  }
 
  #todoDisplay {
@@ -178,4 +183,26 @@ main{
 // public classes
 .hide{
     display: none;
+}
+
+.todoIcons{
+    font-size: 1.3em;
+
+}
+.fa-info-circle:hover{
+    color: green;
+}
+
+.medium{
+    background-color: goldenrod;
+}
+
+.low{
+    background-color: green;
+}
+
+.high{
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
 }

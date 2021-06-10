@@ -68,11 +68,17 @@
 
                 </div>
             </div>
-<!-- TODO List Modal -->
+
             <div id='main-right'>
 
                 <div id="projectTitle"></div>
 
+                    <div class="d-flex col-12" id="todosWrapper">
+                        <div class="d-flex flex-column col-4" id="todosContainer"></div>
+                        <div  class="d-flex flex-column mr-8" id="todoDisplay"></div>
+                    </div>
+      
+<!-- TODO List Modal -->
                 <form class="newTodoForm hide">
                     <div>
          
@@ -80,13 +86,13 @@
                      <input type="text" placeholder="Enter Project Title" id="title">
                  </div> 
                      <div>
-                     <label for="date" class="d-flex form-label">Date</label>
-                     <input type="date" id="date">
-                 </div>  
-                 <div>
-                     <label for="desc" class="d-flex form-label">Description</label>
-                     <textarea id="desc"></textarea>
-                 </div>
+                        <label for="date" class="d-flex form-label">Date</label>
+                        <input type="date" id="date">
+                    </div>  
+                    <div>
+                        <label for="desc" class="d-flex form-label">Description</label>
+                        <textarea id="desc"></textarea>
+                    </div>
                  <div>
                      <label for="priority" class="d-flex form-label">Priority</label>
                      <select  class="dropdown" id="priority">
@@ -100,11 +106,6 @@
                 <button type="button" class="todoAddBtn btn btn-primary hide" id="todoForm-link">  
                 <i class="fas fa-plus "></i>New To Do</button>  
  
-                  <div class="d-flex col-12" id="todosWrapper">
-                      <div class="d-flex flex-column col-4" id="todosContainer"></div>
-                      <div  class="d-flex flex-column mr-8" id="todoDisplay"></div>
-
-                  </div>
             </div>
         </div>
     </main>
