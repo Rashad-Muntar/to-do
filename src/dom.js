@@ -37,9 +37,6 @@ const projectConstructor = () => {
     projectArr.push(project)
     EXISTING_DATA.push(project)
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-    // if(document.querySelector('.project-container').contains(document.querySelector('.projectList'))){
-    //     document.querySelector('.projectList').innerHTML = ''
-    // }
     uppdateProjectList()
 }
 
@@ -108,82 +105,6 @@ const toggleMainRightContent = () => {
       }
 }
 
-const displayTodos = () => {
-    for( let j = 0; j < EXISTING_DATA.length; j++){
-        if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
-          for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
-              let todoTitle = document.createElement('p')
-              let todoDiv = document.createElement('div')
-              let date = document.createElement('p')
-              let delIcon = document.createElement('span')
-              let buttonsDiv = document.createElement('div')
-              let moreIcon = document.createElement('span')
-    
-              delIcon.classList.add('far', 'fa-trash-alt', 'todoIcons')
-              delIcon.classList.add('todoDelIcon')
-              moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons')
-              todoTitle.classList.add('todoTitle')
-              todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between' ,'col-12')
-              buttonsDiv.classList.add('btnsDiv', 'd-fle')
-
-              todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
-              date.innerHTML = EXISTING_DATA[j].todos[k].date
-              todoDiv.setAttribute('value', EXISTING_DATA[j].todos[k].priority)
-              todoDiv.appendChild(todoTitle)
-              todoDiv.appendChild(date)
-              buttonsDiv.appendChild(delIcon)
-              buttonsDiv.appendChild(moreIcon)
-              todoDiv.appendChild(buttonsDiv)
-              document.getElementById('todosContainer').appendChild(todoDiv)
-              moreIcon.addEventListener('click', () => {
-
-                 todoTitleDisplay.innerHTML= EXISTING_DATA[j].todos[k].title
-                 todoDescription.innerHTML= EXISTING_DATA[j].todos[k].description
-                 todoDate.innerHTML= EXISTING_DATA[j].todos[k].date
-                 todoPriority.innerHTML = EXISTING_DATA[j].todos[k].priority
-
-                 document.getElementById('todoDisplay').appendChild(todoTitleDisplay)
-                 document.getElementById('todoDisplay').appendChild(todoDate)
-                 document.getElementById('todoDisplay').appendChild(todoDescription)
-                 document.getElementById('todoDisplay').appendChild(todoPriority)
-
-                 document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'))
-
-             })
-              
-
-          }
-        }
-    }
-}
-
-const todoColors = () => {
-    let pr = document.querySelectorAll(".prs")
-    for(let i = 0; i < pr.length; i++){
-            pr[i].addEventListener('click', ()=>{
-                if(document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))){
-                    let todoDiv = document.querySelectorAll('.todoDiv')
-                    for(let j = 0; j < todoDiv.length; j++){
-                        if(todoDiv[j].getAttribute('value') == 'High'){
-                            todoDiv[j].classList.add('high')
-                        }
-                        if(todoDiv[j].getAttribute('value') == 'Medium'){
-                            todoDiv[j].classList.add('medium')  
-                        }
-                        if(todoDiv[j].getAttribute('value') == 'Low'){
-                            todoDiv[j].classList.add('low')  
-                        }              
-                    }
-                  
-                }
-                    
-                
-            })
-            
-        } 
-}
- 
-
 const mainProjectDisplay = () => {
     const allSidebarprojects = document.querySelectorAll('.prs')
     for(let i = 0; i < allSidebarprojects.length; i++){
@@ -238,22 +159,8 @@ const todoConstructor = () => {
 
             if( EXISTING_DATA[i].title === projectTitle) {
                 EXISTING_DATA[i].todos.push(newToDo)
-                mainProjectDisplay()
                 localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-                mainProjectDisplay()
-                todoColors()
-                
-                for( let j = 0; j < EXISTING_DATA.length; j++){
-                    if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
-                        let last = EXISTING_DATA[j].todos.pop()
-                          let todoTitle = document.createElement('p')
-                          todoTitle.textContent = last.title
-                          if(document.getElementById('todosContainer')){
-                            document.getElementById('todosContainer').appendChild(todoTitle)
-                          }
-
-                    }
-                }
+                updateTodoList()
             }
         } 
     }
@@ -281,6 +188,117 @@ const createTodo = () => {
     
 }
 
+const todoColors = () => {
+    let pr = document.querySelectorAll(".prs")
+    for(let i = 0; i < pr.length; i++){
+        pr[i].addEventListener('click', ()=>{
+        if(document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))){
+            let todoDiv = document.querySelectorAll('.todoDiv')
+            for(let j = 0; j < todoDiv.length; j++){
+                if(todoDiv[j].getAttribute('value') == 'High'){
+                    todoDiv[j].classList.add('high')
+                }
+                if(todoDiv[j].getAttribute('value') == 'Medium'){
+                    todoDiv[j].classList.add('medium')  
+                }
+                if(todoDiv[j].getAttribute('value') == 'Low'){
+                    todoDiv[j].classList.add('low')  
+                }              
+            }
+            
+        }
+            
+            
+        })
+        
+    } 
+}
+
+
+const displayTodos = () => {
+    for( let j = 0; j < EXISTING_DATA.length; j++){
+        if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
+          for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
+              let todoTitle = document.createElement('p')
+              let todoDiv = document.createElement('div')
+              let date = document.createElement('p')
+              let delIcon = document.createElement('span')
+              let buttonsDiv = document.createElement('div')
+              let moreIcon = document.createElement('span')
+    
+              delIcon.classList.add('far', 'fa-trash-alt', 'todoIcons', 'todoDelIcon')
+              moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons')
+              todoTitle.classList.add('todoTitle')
+              todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between' ,'col-12')
+              buttonsDiv.classList.add('btnsDiv', 'd-fle')
+
+              todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
+              date.innerHTML = EXISTING_DATA[j].todos[k].date
+              todoDiv.setAttribute('value', EXISTING_DATA[j].todos[k].priority)
+              todoDiv.appendChild(todoTitle)
+              todoDiv.appendChild(date)
+              buttonsDiv.appendChild(delIcon)
+              buttonsDiv.appendChild(moreIcon)
+              todoDiv.appendChild(buttonsDiv)
+              document.getElementById('todosContainer').appendChild(todoDiv)
+              moreIcon.addEventListener('click', () => {
+
+                 todoTitleDisplay.innerHTML= EXISTING_DATA[j].todos[k].title
+                 todoDescription.innerHTML= EXISTING_DATA[j].todos[k].description
+                 todoDate.innerHTML= EXISTING_DATA[j].todos[k].date
+                 todoPriority.innerHTML = EXISTING_DATA[j].todos[k].priority
+
+                 document.getElementById('todoDisplay').appendChild(todoTitleDisplay)
+                 document.getElementById('todoDisplay').appendChild(todoDate)
+                 document.getElementById('todoDisplay').appendChild(todoDescription)
+                 document.getElementById('todoDisplay').appendChild(todoPriority)
+
+                 document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'))
+
+             })
+              
+
+          }
+        }
+    }
+}
+
+
+const updateTodoList = () => {
+
+    for( let j = 0; j < EXISTING_DATA.length; j++){
+        if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
+            let last = EXISTING_DATA[j].todos.pop()
+              let todoTitle = document.createElement('p')
+              let todoDiv = document.createElement('div')
+              let date = document.createElement('p')
+              let delIcon = document.createElement('span')
+              let buttonsDiv = document.createElement('div')
+              let moreIcon = document.createElement('span')
+
+              delIcon.classList.add('far', 'fa-trash-alt', 'todoIcons', 'todoDelIcon')
+              moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons')
+              todoTitle.classList.add('todoTitle')
+              todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between' ,'col-12')
+              buttonsDiv.classList.add('btnsDiv', 'd-fle')
+              todoDiv.setAttribute('value', last.priority)
+
+              todoTitle.innerHTML = last.title
+              todoDate.innerHTML = last.date
+
+              if(document.getElementById('todosContainer')){
+                todoDiv.appendChild(todoTitle)
+                todoDiv.appendChild(date)
+                buttonsDiv.appendChild(delIcon)
+                buttonsDiv.appendChild(moreIcon)
+                todoDiv.appendChild(buttonsDiv)
+                document.getElementById('todosContainer').appendChild(todoDiv)
+                todoColors()
+              }
+
+        }
+    }
+}
 
 const todoDelete = () => {
     let pr = document.querySelectorAll(".prs")

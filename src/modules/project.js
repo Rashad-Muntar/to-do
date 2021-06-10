@@ -22,4 +22,19 @@ const defProject = () => {
     location.reload()
   }
 
-export  { projectFactory, deleteProject }
+  const projectConstructor = () => {
+    let project = projectFactory(
+        document.getElementById('prtitle').value,
+        document.getElementById('prdesc').value,
+        document.getElementById('prdate').value,
+        document.getElementById('prpriority').value,
+        false,
+        []
+    )
+    projectArr.push(project)
+    EXISTING_DATA.push(project)
+    localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+    uppdateProjectList()
+}
+
+export  { projectFactory, deleteProject, projectConstructor }
