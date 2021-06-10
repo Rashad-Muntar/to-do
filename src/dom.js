@@ -37,7 +37,31 @@ const projectConstructor = () => {
     projectArr.push(project)
     EXISTING_DATA.push(project)
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-    mainProjectDisplay()
+    // if(document.querySelector('.project-container').contains(document.querySelector('.projectList'))){
+    //     document.querySelector('.projectList').innerHTML = ''
+    // }
+    uppdateProjectList()
+}
+
+const uppdateProjectList = () => {
+        let projects = document.querySelector('.projects')
+        let projectTitle = document.createElement('div')
+        let projectMain = document.createElement('div')
+        let delBtn = document.createElement('div')
+
+        let last = EXISTING_DATA.pop()
+
+        projectMain.classList.add('prs')
+        delBtn.classList.add('far', 'fa-trash-alt')
+        projectTitle.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle')
+        delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center')
+        
+        projectMain.innerHTML = last.title
+
+        projectTitle.appendChild(projectMain)
+        projectTitle.appendChild(delBtn)
+        projects.appendChild(projectTitle)
+        
 }
 
 const createProject = (e) => {
@@ -90,6 +114,7 @@ const displayTodos = () => {
           for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
               let todoTitle = document.createElement('p')
               let todoDiv = document.createElement('div')
+              let date = document.createElement('p')
               let delIcon = document.createElement('span')
               let buttonsDiv = document.createElement('div')
               let moreIcon = document.createElement('span')
@@ -102,8 +127,10 @@ const displayTodos = () => {
               buttonsDiv.classList.add('btnsDiv', 'd-fle')
 
               todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title
+              date.innerHTML = EXISTING_DATA[j].todos[k].date
               todoDiv.setAttribute('value', EXISTING_DATA[j].todos[k].priority)
               todoDiv.appendChild(todoTitle)
+              todoDiv.appendChild(date)
               buttonsDiv.appendChild(delIcon)
               buttonsDiv.appendChild(moreIcon)
               todoDiv.appendChild(buttonsDiv)
@@ -174,6 +201,7 @@ const mainProjectDisplay = () => {
 
             toggleMainRightContent()
             displayTodos()
+            todoColors()
               
             })
     }
@@ -212,6 +240,8 @@ const todoConstructor = () => {
                 EXISTING_DATA[i].todos.push(newToDo)
                 mainProjectDisplay()
                 localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+                mainProjectDisplay()
+                todoColors()
                 
                 for( let j = 0; j < EXISTING_DATA.length; j++){
                     if(document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title){
@@ -232,10 +262,21 @@ const todoConstructor = () => {
 const createTodo = () => {
     const todoBtn = document.getElementById('submit')
     todoBtn.addEventListener('click', (e)=>{
-        e.preventDefault()
-        todoConstructor()
-        document.querySelector('form').classList.add('hide')
-       
+         
+        if (document.getElementById('title').value == "" || 
+            document.getElementById('date').value == "" || 
+            document.getElementById('desc').value == "" ||
+            document.getElementById('priority').value == "") 
+        {
+          alert("You need to fill out all fields");
+          return false;
+        }
+        else{
+            e.preventDefault()
+            todoConstructor()
+            document.querySelector('form').reset()
+            document.querySelector('form').classList.add('hide')
+        }
     } )
     
 }

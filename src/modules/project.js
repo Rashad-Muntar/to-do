@@ -3,15 +3,18 @@ const projectFactory = (title, description, date, priority, completed, todos) =>
     return {title, description, date, priority, completed, todos}
 }
 
+const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
+
 const defaultProject = projectFactory('Default Project', 'Default project one', '08/02/2021', 'Medium', false );
 
-const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
- for( let i = 0; i < EXISTING_DATA.length; i++) {
-    if(EXISTING_DATA[i].title == 'Default Project'){
-        EXISTING_DATA.push(defaultProject)
-        localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+const defProject = () => {
+  for(let i = 0; i < EXISTING_DATA.length; i++){
+    while(EXISTING_DATA[i].title != 'Default Project'){
+      EXISTING_DATA.unshift(defaultProject)
+      localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
     }
- }
+  }
+}
 
  function deleteProject(index){
     EXISTING_DATA.splice(index, 1)
@@ -19,4 +22,4 @@ const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
     location.reload()
   }
 
-export  { projectFactory, deleteProject}
+export  { projectFactory, deleteProject }

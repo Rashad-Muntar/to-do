@@ -13,6 +13,7 @@ import { createProject,
         todoColors
         } from './dom'
 
+
 createProject()
 displayProjects()
 allProjects()

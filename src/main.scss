@@ -82,6 +82,7 @@ main{
             }
 
             .projectTitle{
+                display: flex;
                 padding: 7px;
                 &:hover{
                     background-color: rgb(255, 235, 238)
@@ -106,6 +107,7 @@ main{
         
         #prTitle {
          font-weight: bold;
+         color: #dc3545;
         }
 
         .todoAddBtn  {
@@ -118,7 +120,6 @@ main{
 
         h3 {
             display: flex;
-            justify-content: center;
             align-content: center;
             background: rgb(226, 226, 226);
         }
@@ -127,8 +128,36 @@ main{
     }
 }
 
-.todosWrapper{
-    margin: 0 auto;
+#todosWrapper{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+
+    #toggleTodoForm {
+        width: 33.33%;
+        padding: 10px; 
+    }
+
+    #todosContainer{
+        width: 33.33%;
+        padding: 10px;
+        box-sizing: border-box; 
+    }
+
+    #todoDisplay{
+        width: 33.33%;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;   
+        padding: 10px; 
+        margin-top: 0;
+        height: 100px;
+    
+        p{
+           padding: 0;
+           margin: 0; 
+        }
+    }
 }
 
 
@@ -164,21 +193,25 @@ main{
  .newTodoForm{
      display: flex;
      justify-content: space-around;
- }
-
- #todoDisplay {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;   
-    padding: 10px; 
-    margin: 10px 0 0 30px;
-    margin-top: 0;
-    height: 100px;
-
-    p{
-       padding: 0;
-       margin: 0; 
-    }
+     flex-direction: column;
+     background: rgb(255, 240, 242);
+     
+     input{
+         width: 100%;
+         height: 40px;
+         border-radius: 5px;
+         margin-bottom: 10px;
+     }
+     textarea{
+        width: 100%;
+        border-radius: 5px;
+     }
+     select{
+         width: 100%;
+         height: 40px;
+         border-radius: 5px;
+         margin-bottom: 10px;
+     } 
  }
 
 // public classes
@@ -211,4 +244,9 @@ main{
 
 .high{
     background-color: #dc3545;
+}
+
+#projectTitle{
+    width: 100%;
+    margin-left: 15px;
 }

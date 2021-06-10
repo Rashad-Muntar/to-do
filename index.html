@@ -71,36 +71,40 @@
 
             <div id='main-right'>
 
-                <div id="projectTitle"></div>
+                <div id="projectTitle">
+                    
+                </div>
+                    <button type="button" class="todoAddBtn btn btn-primary hide" id="todoForm-link">  
+                    <i class="fas fa-plus "></i>New To Do</button>  
 
-                    <div class="d-flex col-12" id="todosWrapper">
-                        <div class="d-flex flex-column col-4" id="todosContainer"></div>
-                        <div  class="d-flex flex-column mr-8" id="todoDisplay"></div>
+                    <div id="todosWrapper">
+                        <div class="d-flex flex-column " id="todosContainer"></div>
+                        <div id="toggleTodoForm">
+                            <form class="newTodoForm hide" id="todForm">
+                                <div>
+                                 <input type="text" placeholder="Enter Project Title" id="title" required>
+                             </div> 
+                                 <div>
+                                    <input type="date" id="date" required>
+                                </div>  
+                                <div>
+                                    <textarea id="desc"placeholder="Enter Details" required></textarea>
+                                </div>
+                             <div>
+                                 <select  class="dropdown" id="priority" required>
+                                        <option value="" disabled selected hidden>Select Priority</option>
+                                         <option value= 'High'>High </option>
+                                         <option value= 'Medium'>Medium</option>
+                                         <option value= 'Low'>Low</option>
+                                 </select>
+                             </div>
+                           <input type="submit" id="submit">
+                        </form>
+                        </div>
+                        <div class="d-flex flex-column" id="todoDisplay">
+                        </div>
                     </div>
       
-<!-- TODO List Modal -->
-                <form class="newTodoForm hide">
-                    <div>
-                     <input type="text" placeholder="Enter Project Title" id="title">
-                 </div> 
-                     <div>
-                        <input type="date" id="date">
-                    </div>  
-                    <div>
-                        <textarea id="desc"></textarea>
-                    </div>
-                 <div>
-                     <select  class="dropdown" id="priority">
-                             <option value= 'High'>High </option>
-                             <option value= 'Medium'>Medium</option>
-                             <option value= 'Low'>Low</option>
-                     </select>
-                 </div>
-               <input type="submit" id="submit">
-            </form>
-                <button type="button" class="todoAddBtn btn btn-primary hide" id="todoForm-link">  
-                <i class="fas fa-plus "></i>New To Do</button>  
- 
             </div>
         </div>
     </main>
@@ -142,7 +146,7 @@
     </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" id='prsubmit' class="btn btn-primary">Save</button>
+          <button type="button" id='prsubmit' data-bs-dismiss="modal" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
