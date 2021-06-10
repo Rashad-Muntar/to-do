@@ -139,7 +139,8 @@ main{
     justify-content: space-between;
     align-content: center;   
     padding: 10px;
-    background-color: rgb(233, 233, 233); 
+    color: white;
+    border-radius: 5px;
 }
 
  .todoTitle {
@@ -191,6 +192,13 @@ main{
 }
 .fa-info-circle:hover{
     color: green;
+    cursor: pointer;
+}
+
+.completedTodo{
+    text-decoration: line-through;
+    color: rgb(230, 230, 230);
+    opacity: 0.6;
 }
 
 .medium{
@@ -203,6 +211,4 @@ main{
 
 .high{
     background-color: #dc3545;
-    color: white;
-    border-radius: 5px;
 }

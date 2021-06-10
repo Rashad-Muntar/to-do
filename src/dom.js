@@ -1,5 +1,5 @@
 import { projectFactory, deleteProject } from './modules/project'
-import { todoFactory, deleteTodo } from './modules/todo'
+import { todoFactory, deleteTodo, completeTodo } from './modules/todo'
 
 const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 const projectArr = []
@@ -131,15 +131,31 @@ const displayTodos = () => {
 }
 
 const todoColors = () => {
-    if (document.getElementById('todosWrapper').contains(document.getElementById('todosContainer'))) {
-        let todo = document.querySelectorAll('.todoDiv')
-        // for(let l = 0; l < todo.length; l++){
-        //    console.log(todo[l].getAttribute('value'))
-        // }
-        console.log("He dey")
-        console.log(todo)
-      }
+    let pr = document.querySelectorAll(".prs")
+    for(let i = 0; i < pr.length; i++){
+            pr[i].addEventListener('click', ()=>{
+                if(document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))){
+                    let todoDiv = document.querySelectorAll('.todoDiv')
+                    for(let j = 0; j < todoDiv.length; j++){
+                        if(todoDiv[j].getAttribute('value') == 'High'){
+                            todoDiv[j].classList.add('high')
+                        }
+                        if(todoDiv[j].getAttribute('value') == 'Medium'){
+                            todoDiv[j].classList.add('medium')  
+                        }
+                        if(todoDiv[j].getAttribute('value') == 'Low'){
+                            todoDiv[j].classList.add('low')  
+                        }              
+                    }
+                  
+                }
+                    
+                
+            })
+            
+        } 
 }
+ 
 
 const mainProjectDisplay = () => {
     const allSidebarprojects = document.querySelectorAll('.prs')
@@ -157,7 +173,6 @@ const mainProjectDisplay = () => {
             document.querySelector('.todoAddBtn').classList.remove('hide')
 
             toggleMainRightContent()
-            todoColors()
             displayTodos()
               
             })
@@ -176,17 +191,6 @@ const deleteEvent = () => {
         }
 }
 
-const complete = () => {
-    const delbtns = document.querySelectorAll('.todoTitle')
-    console.log(delbtns)
-        for(let i = 0; i < delbtns.length; i += 1){
-            delbtns[i].addEventListener('click', (e)=>{
-                e.stopPropagation()
-                console.log('del deleted')
-                deleteProject(i)
-            })
-        }
-}
 
 
 // todo starts here
@@ -258,6 +262,28 @@ const todoDelete = () => {
         }  
     }
 
+    const completeEvent = () => {
+        let pr = document.querySelectorAll(".prs")
+        for(let i = 0; i < pr.length; i++){
+                pr[i].addEventListener('click', ()=>{
+                    if(document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))){
+                        let todo = document.querySelectorAll('.todoTitle')
+                        for(let j = 0; j < todo.length; j++){
+                            todo[j].addEventListener('click', ()=>{
+                                completeTodo(j)
+                                todo[j].classList.toggle('completedTodo')
+                                console.log('todo is deleted')
+                            })
+                            
+                        }
+                    }
+                        
+                    
+                })
+                
+            } 
+    }
+
 
 export { createProject, 
         displayProjects, 
@@ -267,6 +293,8 @@ export { createProject,
         mainProjectDisplay,
         deleteEvent,
         todoFormDisplay,
-        todoDelete
+        todoDelete,
+        completeEvent,
+        todoColors
     }
 

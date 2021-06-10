@@ -8,7 +8,9 @@ import { createProject,
          mainProjectDisplay,
         deleteEvent,
         todoFormDisplay,
-        todoDelete
+        todoDelete,
+        completeEvent,
+        todoColors
         } from './dom'
 
 createProject()
@@ -20,3 +22,5 @@ mainProjectDisplay()
 deleteEvent()
 todoFormDisplay()
 todoDelete()
+completeEvent()
+todoColors()

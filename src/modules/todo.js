@@ -12,4 +12,17 @@ function deleteTodo(index){
     }
   }
 
-export  { todoFactory, deleteTodo };
+  function completeTodo(index){
+    for(let i = 0; i < EXISTING_DATA.length; i++){
+            if(EXISTING_DATA[i].todos.completed == false){
+              EXISTING_DATA[i].todos.completed = true
+              localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+              
+            }else{
+              EXISTING_DATA[i].todos.completed = true
+              localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+            }
+    }
+  }
+
+export  { todoFactory, deleteTodo, completeTodo };
