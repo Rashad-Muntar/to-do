@@ -293,10 +293,10 @@ const updateTodoList = () => {
                 buttonsDiv.appendChild(moreIcon)
                 todoDiv.appendChild(buttonsDiv)
                 document.getElementById('todosContainer').appendChild(todoDiv)
-                todoColors()
               }
 
         }
+        todoColors()
     }
 }
 

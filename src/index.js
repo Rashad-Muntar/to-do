@@ -10,10 +10,14 @@ import { createProject,
         todoFormDisplay,
         todoDelete,
         completeEvent,
-        todoColors
+        todoColors,
+        uppdateProjectList
         } from './dom'
 
+import {defProject} from './modules/project'
 
+
+defProject()
 createProject()
 displayProjects()
 allProjects()
