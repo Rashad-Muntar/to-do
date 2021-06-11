@@ -73,9 +73,6 @@ main{
                 display: flex;
                 justify-content: space-between;
             }
-            .projects{
-                padding-left: 20px;
-            }
   
             .projectDelBtn, .prs{
                 cursor: pointer;
@@ -108,6 +105,8 @@ main{
         #prTitle {
          font-weight: bold;
          color: #dc3545;
+         display: flex;
+         justify-content: center;
         }
 
         .todoAddBtn  {

@@ -34,7 +34,7 @@ const defProject = () => {
     projectArr.push(project)
     EXISTING_DATA.push(project)
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-    uppdateProjectList()
+    updateProjectList()
 }
 
-export  { projectFactory, deleteProject, projectConstructor }
+export  { projectFactory, deleteProject, projectConstructor, defProject }
