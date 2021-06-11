@@ -1,4 +1,4 @@
-import { projectFactory, deleteProject, defProject } from './modules/project'
+import { projectFactory, deleteProject } from './modules/project'
 import { todoFactory, deleteTodo, completeTodo } from './modules/todo'
 
 const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
@@ -107,7 +107,6 @@ const toggleMainRightContent = () => {
 
 const mainProjectDisplay = () => {
     const allSidebarprojects = document.querySelectorAll('.prs')
-    defProject()
     for(let i = 0; i < allSidebarprojects.length; i++){
         allSidebarprojects[i].addEventListener('click', (e)=>{
             let projectTitle = document.createElement('h3')

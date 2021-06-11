@@ -7,14 +7,14 @@ const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || []
 
 const defaultProject = projectFactory('Default Project', 'Default project one', '08/02/2021', 'Medium', false );
 
-const defProject = () => {
-  for(let i = 0; i < EXISTING_DATA.length; i++){
-    while(EXISTING_DATA[i].title != 'Default Project'){
-      EXISTING_DATA.unshift(defaultProject)
-      localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-    }
-  }
-}
+// const defProject = () => {
+//   for(let i = 0; i < EXISTING_DATA.length; i++){
+//     while(EXISTING_DATA[i].title != 'Default Project'){
+//       EXISTING_DATA.unshift(defaultProject)
+//       localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+//     }
+//   }
+// }
 
  function deleteProject(index){
     EXISTING_DATA.splice(index, 1)
@@ -37,4 +37,4 @@ const defProject = () => {
     updateProjectList()
 }
 
-export  { projectFactory, deleteProject, projectConstructor, defProject }
+export  { projectFactory, deleteProject, projectConstructor }
