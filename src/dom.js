@@ -37,10 +37,10 @@ const projectConstructor = () => {
     projectArr.push(project)
     EXISTING_DATA.push(project)
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
-    uppdateProjectList()
+    updateProjectList()
 }
 
-const uppdateProjectList = () => {
+const updateProjectList = () => {
         let projects = document.querySelector('.projects')
         let projectTitle = document.createElement('div')
         let projectMain = document.createElement('div')
@@ -48,7 +48,7 @@ const uppdateProjectList = () => {
 
         let last = EXISTING_DATA.pop()
 
-        projectMain.classList.add('prs')
+        projectMain.classList.add('prs', 'col-12')
         delBtn.classList.add('far', 'fa-trash-alt')
         projectTitle.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle')
         delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center')
@@ -348,6 +348,7 @@ export { createProject,
         displayProjects, 
         allProjects, 
         todoConstructor, 
+        updateProjectList,
         createTodo, 
         mainProjectDisplay,
         deleteEvent,

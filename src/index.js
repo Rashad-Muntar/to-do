@@ -11,7 +11,6 @@ import { createProject,
         todoDelete,
         completeEvent,
         todoColors,
-        uppdateProjectList
         } from './dom'
 
 import {defProject} from './modules/project'
