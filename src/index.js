@@ -1,33 +1,32 @@
 import './main.scss';
 
-import { createProject, 
-         displayProjects, 
-         allProjects, 
-         todoConstructor, 
-         createTodo, 
-         mainProjectDisplay,
-        deleteEvent,
-        todoFormDisplay,
-        todoDelete,
-        completeEvent,
-        todoColors,
-        editForm
-        } from './dom'
+import {
+  createProject,
+  displayProjects,
+  allProjects,
+  todoConstructor,
+  createTodo,
+  mainProjectDisplay,
+  deleteEvent,
+  todoFormDisplay,
+  todoDelete,
+  completeEvent,
+  todoColors,
+  editForm,
+} from './dom';
 
-import {defProject} from './modules/project'
+import { defProject } from './modules/project';
 
-
-defProject()
-createProject()
-displayProjects()
-allProjects()
-todoConstructor()
-createTodo()
-mainProjectDisplay()
-deleteEvent()
-todoFormDisplay()
-todoDelete()
-completeEvent()
-todoColors()
-editForm()
-
+defProject();
+createProject();
+displayProjects();
+allProjects();
+todoConstructor();
+createTodo();
+mainProjectDisplay();
+deleteEvent();
+todoFormDisplay();
+todoDelete();
+completeEvent();
+todoColors();
+editForm();
