@@ -11,6 +11,7 @@ import { createProject,
         todoDelete,
         completeEvent,
         todoColors,
+        editForm
         } from './dom'
 
 import {defProject} from './modules/project'
@@ -28,3 +29,5 @@ todoFormDisplay()
 todoDelete()
 completeEvent()
 todoColors()
+editForm()
+

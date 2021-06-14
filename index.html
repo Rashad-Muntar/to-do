@@ -102,6 +102,26 @@
                         </form>
                         </div>
                         <div class="d-flex flex-column" id="todoDisplay">
+                            <form class="editTodoForm hide">
+                                <div>
+                                 <input type="text" placeholder="Enter Project Title" id="editTitle" required>
+                             </div> 
+                                 <div>
+                                    <input type="date" id="editDate" required>
+                                </div>  
+                                <div>
+                                    <textarea id="editDesc" placeholder="Enter Details" required></textarea>
+                                </div>
+                             <div>
+                                 <select  class="dropdown" id="editPriority" required>
+                                        <option value="" disabled selected hidden>Select Priority</option>
+                                         <option value= 'High'>High </option>
+                                         <option value= 'Medium'>Medium</option>
+                                         <option value= 'Low'>Low</option>
+                                 </select>
+                             </div>
+                           <input type="submit" id="editSubmit">
+                        </form>
                         </div>
                     </div>
       

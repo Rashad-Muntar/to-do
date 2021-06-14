@@ -9,6 +9,8 @@ const mainContent = document.getElementById('projectTitle')
 const todosWrapper = document.getElementById('todosWrapper')
 const todoFormBtn = document.getElementById('todoForm-link')
 const todoForm = document.querySelector('.newTodoForm')
+const editTodoForm = document.querySelector('.editTodoForm')
+
 let todoTitleDisplay = document.createElement('p')
 let todoDescription = document.createElement('p')
 let todoDate = document.createElement('p')
@@ -225,7 +227,8 @@ const displayTodos = () => {
               let delIcon = document.createElement('span')
               let buttonsDiv = document.createElement('div')
               let moreIcon = document.createElement('span')
-    
+              let newTodoForm = document.querySelector('newTodoForm')
+              
               delIcon.classList.add('far', 'fa-trash-alt', 'todoIcons', 'todoDelIcon')
               moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons')
               todoTitle.classList.add('todoTitle')
@@ -242,16 +245,12 @@ const displayTodos = () => {
               todoDiv.appendChild(buttonsDiv)
               document.getElementById('todosContainer').appendChild(todoDiv)
               moreIcon.addEventListener('click', () => {
-
-                 todoTitleDisplay.innerHTML= EXISTING_DATA[j].todos[k].title
-                 todoDescription.innerHTML= EXISTING_DATA[j].todos[k].description
-                 todoDate.innerHTML= EXISTING_DATA[j].todos[k].date
-                 todoPriority.innerHTML = EXISTING_DATA[j].todos[k].priority
-
-                 document.getElementById('todoDisplay').appendChild(todoTitleDisplay)
-                 document.getElementById('todoDisplay').appendChild(todoDate)
-                 document.getElementById('todoDisplay').appendChild(todoDescription)
-                 document.getElementById('todoDisplay').appendChild(todoPriority)
+                editTodoForm.classList.toggle('hide')
+                     
+               document.getElementById('editTitle').value =  EXISTING_DATA[j].todos[k].title
+               document.getElementById('editDate').value =  EXISTING_DATA[j].todos[k].date
+               document.getElementById('editDesc').value =  EXISTING_DATA[j].todos[k].description
+               document.getElementById('editPriority').value =  EXISTING_DATA[j].todos[k].priority
 
                  document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'))
 
@@ -263,6 +262,29 @@ const displayTodos = () => {
     }
 }
 
+const editForm = () => {
+    let editSubmit = document.querySelector('#editSubmit')
+    editSubmit.addEventListener('click', () => {
+        for( let j = 0; j < EXISTING_DATA.length; j++){
+            for( let k = 0; k < EXISTING_DATA[j].todos.length; k++){
+                if (document.getElementById('editTitle').value == "" || 
+                document.getElementById('editDate').value == "" || 
+                document.getElementById('editDesc').value == "" ||
+                document.getElementById('editPriority').value == "") 
+            {
+              alert("You need to fill out all fields");
+              return false;
+            }
+                    EXISTING_DATA[j].todos[k].title = document.getElementById('editTitle').value
+                    EXISTING_DATA[j].todos[k].date = document.getElementById('editDate').value
+                    EXISTING_DATA[j].todos[k].description = document.getElementById('editDesc').value
+                    EXISTING_DATA[j].todos[k].priority = document.getElementById('editPriority').value
+                    localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA))
+            }
+        }
+    })
+
+}
 
 const updateTodoList = () => {
 
@@ -355,6 +377,7 @@ export { createProject,
         todoFormDisplay,
         todoDelete,
         completeEvent,
-        todoColors
+        todoColors, 
+        editForm
     }
 
