@@ -80,7 +80,7 @@
     ```
 
 ### Usage
-Lauch the local version of this project opening the `index.html` file in the browser
+Lauch the local version of this project opening the `./dist/index.html` file in the browser
 
 ## Contributing
 
