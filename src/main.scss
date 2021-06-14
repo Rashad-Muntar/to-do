@@ -189,7 +189,7 @@ main{
     cursor: pointer; 
  }
 
- .newTodoForm{
+ .newTodoForm, .editTodoForm{
      display: flex;
      justify-content: space-around;
      flex-direction: column;
