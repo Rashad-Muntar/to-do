@@ -41,7 +41,7 @@
 
 ## Watch the Live Version
 
-[Live Demo]()
+[Live Demo](https://rashad-muntar.github.io/to-do/)
 
 ### Prerequisites
 
