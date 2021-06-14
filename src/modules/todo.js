@@ -10,7 +10,7 @@ const deleteTodo = (index) => {
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
     window.location.reload();
   }
-}
+};
 
 const completeTodo = () => {
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
@@ -22,6 +22,6 @@ const completeTodo = () => {
       localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
     }
   }
-}
+};
 
 export { todoFactory, deleteTodo, completeTodo };

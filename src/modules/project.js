@@ -17,7 +17,7 @@ const deleteProject = (index) => {
   EXISTING_DATA.splice(index, 1);
   localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
   window.location.reload();
-}
+};
 
 const projectConstructor = () => {
   const project = projectFactory(
