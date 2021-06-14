@@ -35,7 +35,9 @@
 
 <b>TODO List </b> The main goal of this project is to understand the benefits of modularized code as well as the ability to set up a javascript application made of different modules using webpack and more advanced ES6 features
 
-<img src="./src/assets/screenshot.png" alt="Screenshot" style="margin: auto; display: block;">
+##Homepage
+![Screenshot from 2021-06-14 20-15-26](https://user-images.githubusercontent.com/58520480/121953648-578d8380-cd4d-11eb-9055-060a11890479.png)
+
 
 ## Watch the Live Version
 
