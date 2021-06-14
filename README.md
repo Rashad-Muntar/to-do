@@ -67,7 +67,6 @@
     npm run build
     ``` 
     to bundle scripts with **_webpack_** a static module bundler for modern JavaScript applications
-    Then open the `dist/index.html` in a web browser
 7. In develoment mode run 
     ```bash
     npm run start
@@ -79,7 +78,7 @@
     ```
 
 ### Usage
-Lauch the local version of this project opening the `dist/index.html` file in the browser
+Lauch the local version of this project opening the `index.html` file in the browser
 
 ## Contributing
 
