@@ -53,6 +53,7 @@ const projectConstructor = () => {
   EXISTING_DATA.push(project);
   localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
   updateProjectList();
+  location.reload()
 };
 
 const createProject = () => {
@@ -245,6 +246,7 @@ const todoConstructor = () => {
         EXISTING_DATA[i].todos.push(newToDo);
         localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
         updateTodoList();
+        location.reload()
       }
     }
   }
