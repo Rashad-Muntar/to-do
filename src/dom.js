@@ -39,6 +39,7 @@ const updateProjectList = () => {
   projectTitle.appendChild(delBtn);
   projects.appendChild(projectTitle);
   mainProjectDisplay()
+  deleteEvent()
 };
 
 const projectConstructor = () => {
@@ -125,6 +126,30 @@ const todoColors = () => {
     });
   }
 };
+
+const getEditBtn = () => {
+  for (let j = 0; j < EXISTING_DATA.length; j += 1) {
+    for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1){
+      // if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
+        const todoIcons = document.querySelectorAll('.todoIcons');
+        for (let l = 0; l < todoIcons.length; l += 1) {
+          todoIcons[l].addEventListener('click', () => {
+            editTodoForm.classList.toggle('hide');
+    
+            document.getElementById('editTitle').value = EXISTING_DATA[j].todos[k].title;
+            document.getElementById('editDate').value = EXISTING_DATA[j].todos[k].date;
+            document.getElementById('editDesc').value = EXISTING_DATA[j].todos[k].description;
+            document.getElementById('editPriority').value = EXISTING_DATA[j].todos[k].priority;
+    
+            document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'));
+            console.log("edit cliek")
+          });
+        // }
+      }
+    }
+  }
+}
+
 
 
 const displayTodos = () => {
@@ -232,6 +257,8 @@ const updateTodoList = () => {
         todoDiv.appendChild(buttonsDiv);
         document.getElementById('todosContainer').appendChild(todoDiv);
         colors()
+        updateDeleteBtn()
+        getEditBtn()
       }
     }
   }
@@ -253,11 +280,11 @@ const todoConstructor = () => {
       if (EXISTING_DATA[i].title === projectTitle) {
         EXISTING_DATA[i].todos.push(newToDo);
         localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-        updateTodoList();
       }
     }
   }
 };
+
 
 const createTodo = () => {
   const todoBtn = document.getElementById('submit');
@@ -273,6 +300,7 @@ const createTodo = () => {
     
     document.querySelector('form').reset();
     document.querySelector('form').classList.add('hide');
+    updateTodoList();
   });
 
 };
@@ -313,6 +341,17 @@ const todoDelete = () => {
     });
   }
 };
+
+const updateDeleteBtn = () => {
+  if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
+    const todoDelBtn = document.querySelectorAll('.todoDelIcon');
+    for (let j = 0; j < todoDelBtn.length; j += 1) {
+      todoDelBtn[j].addEventListener('click', () => {
+        deleteTodo(j);
+      });
+    }
+  }
+}
 
 const completeEvent = () => {
   const pr = document.querySelectorAll('.prs');
