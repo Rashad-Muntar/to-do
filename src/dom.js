@@ -262,7 +262,6 @@ const createTodo = () => {
       return false;
     }
 
-    e.preventDefault();
     todoConstructor();
     document.querySelector('form').reset();
     document.querySelector('form').classList.add('hide');
