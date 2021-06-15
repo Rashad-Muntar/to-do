@@ -38,6 +38,7 @@ const updateProjectList = () => {
   projectTitle.appendChild(projectMain);
   projectTitle.appendChild(delBtn);
   projects.appendChild(projectTitle);
+  mainProjectDisplay()
 };
 
 const projectConstructor = () => {
@@ -53,12 +54,13 @@ const projectConstructor = () => {
   EXISTING_DATA.push(project);
   localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
   updateProjectList();
-  window.location.reload();
 };
 
 const createProject = () => {
   const newProBtn = document.getElementById('prsubmit');
-  newProBtn.addEventListener('click', projectConstructor);
+  newProBtn.addEventListener('click', ()=>{
+    projectConstructor();
+  });
 };
 
 const allProjects = () => {
