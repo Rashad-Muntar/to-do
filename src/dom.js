@@ -39,7 +39,7 @@ const updateProjectList = () => {
   projectTitle.appendChild(delBtn);
   projects.appendChild(projectTitle);
   mainProjectDisplay()
-
+  deleteEvent()
 };
 
 const projectConstructor = () => {
