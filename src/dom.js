@@ -256,7 +256,7 @@ const todoConstructor = () => {
 
 const createTodo = () => {
   const todoBtn = document.getElementById('submit');
-  todoBtn.addEventListener('click', (e) => {
+  todoBtn.addEventListener('click', () => {
     if (document.getElementById('title').value === ''
             || document.getElementById('date').value === ''
             || document.getElementById('desc').value === ''
@@ -264,7 +264,6 @@ const createTodo = () => {
       return false;
     }
 
-    e.preventDefault();
     todoConstructor();
     document.querySelector('form').reset();
     document.querySelector('form').classList.add('hide');
