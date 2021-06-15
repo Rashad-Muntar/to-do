@@ -254,7 +254,7 @@ const todoConstructor = () => {
 
 const createTodo = () => {
   const todoBtn = document.getElementById('submit');
-  todoBtn.addEventListener('click', (e) => {
+  todoBtn.addEventListener('click', () => {
     if (document.getElementById('title').value === ''
             || document.getElementById('date').value === ''
             || document.getElementById('desc').value === ''
