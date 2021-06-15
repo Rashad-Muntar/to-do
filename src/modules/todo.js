@@ -8,7 +8,6 @@ const deleteTodo = (index) => {
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
     EXISTING_DATA[i].todos.splice(index, 1);
     localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-    window.location.reload();
   }
 };
 
