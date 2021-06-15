@@ -28,8 +28,8 @@ const updateProjectList = () => {
 
   const last = EXISTING_DATA.pop();
 
-  projectMain.classList.add('prs', 'col-12');
-  delBtn.classList.add('far', 'fa-trash-alt');
+  projectMain.classList.add('prs', 'col-8');
+  delBtn.classList.add('far', 'fa-trash-alt', 'col-2');
   projectTitle.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle');
   delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center');
 
@@ -100,27 +100,32 @@ const toggleMainRightContent = () => {
   }
 };
 
+const colors = () => {
+  if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
+    const todoDiv = document.querySelectorAll('.todoDiv');
+    for (let j = 0; j < todoDiv.length; j += 1) {
+      if (todoDiv[j].getAttribute('value') === 'High') {
+        todoDiv[j].classList.add('high');
+      }
+      if (todoDiv[j].getAttribute('value') === 'Medium') {
+        todoDiv[j].classList.add('medium');
+      }
+      if (todoDiv[j].getAttribute('value') === 'Low') {
+        todoDiv[j].classList.add('low');
+      }
+    }
+  }
+}
+
 const todoColors = () => {
   const pr = document.querySelectorAll('.prs');
   for (let i = 0; i < pr.length; i += 1) {
     pr[i].addEventListener('click', () => {
-      if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
-        const todoDiv = document.querySelectorAll('.todoDiv');
-        for (let j = 0; j < todoDiv.length; j += 1) {
-          if (todoDiv[j].getAttribute('value') === 'High') {
-            todoDiv[j].classList.add('high');
-          }
-          if (todoDiv[j].getAttribute('value') === 'Medium') {
-            todoDiv[j].classList.add('medium');
-          }
-          if (todoDiv[j].getAttribute('value') === 'Low') {
-            todoDiv[j].classList.add('low');
-          }
-        }
-      }
+      colors()
     });
   }
 };
+
 
 const displayTodos = () => {
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
@@ -163,6 +168,8 @@ const displayTodos = () => {
   }
 };
 
+
+
 const mainProjectDisplay = () => {
   const allSidebarprojects = document.querySelectorAll('.prs');
   for (let i = 0; i < allSidebarprojects.length; i += 1) {
@@ -180,7 +187,6 @@ const mainProjectDisplay = () => {
 
       toggleMainRightContent();
       displayTodos();
-      todoColors();
     });
   }
 };
@@ -214,7 +220,7 @@ const updateTodoList = () => {
       todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between', 'col-12');
       buttonsDiv.classList.add('btnsDiv', 'd-fle');
       todoDiv.setAttribute('value', last.priority);
-
+      
       todoTitle.innerHTML = last.title;
       todoDate.innerHTML = last.date;
 
@@ -225,9 +231,9 @@ const updateTodoList = () => {
         buttonsDiv.appendChild(moreIcon);
         todoDiv.appendChild(buttonsDiv);
         document.getElementById('todosContainer').appendChild(todoDiv);
+        colors()
       }
     }
-    todoColors();
   }
 };
 
@@ -248,7 +254,6 @@ const todoConstructor = () => {
         EXISTING_DATA[i].todos.push(newToDo);
         localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
         updateTodoList();
-        window.location.reload();
       }
     }
   }
@@ -265,9 +270,11 @@ const createTodo = () => {
     }
 
     todoConstructor();
+    
     document.querySelector('form').reset();
     document.querySelector('form').classList.add('hide');
   });
+
 };
 
 const editForm = () => {
