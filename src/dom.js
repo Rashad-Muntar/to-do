@@ -1,8 +1,9 @@
 /* eslint-disable consistent-return */
 import { projectFactory, deleteProject } from './modules/project';
+// import getLocal
 import { todoFactory, deleteTodo, completeTodo } from './modules/todo';
 
-const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+// let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 const projectArr = [];
 const sideBarproject = document.querySelector('.projects');
 const mainContent = document.getElementById('projectTitle');
@@ -20,51 +21,11 @@ const todoFormDisplay = () => {
   });
 };
 
-const updateProjectList = () => {
-  const projects = document.querySelector('.projects');
-  const projectTitle = document.createElement('div');
-  const projectMain = document.createElement('div');
-  const delBtn = document.createElement('div');
-
-  const last = EXISTING_DATA.pop();
-
-  projectMain.classList.add('prs', 'col-8');
-  delBtn.classList.add('far', 'fa-trash-alt', 'col-2');
-  projectTitle.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle');
-  delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center');
-
-  projectMain.innerHTML = last.title;
-
-  projectTitle.appendChild(projectMain);
-  projectTitle.appendChild(delBtn);
-  projects.appendChild(projectTitle);
-  mainProjectDisplay()
-  deleteEvent()
-};
-
-const projectConstructor = () => {
-  const project = projectFactory(
-    document.getElementById('prtitle').value,
-    document.getElementById('prdesc').value,
-    document.getElementById('prdate').value,
-    document.getElementById('prpriority').value,
-    false,
-    [],
-  );
-  projectArr.push(project);
-  EXISTING_DATA.push(project);
-  localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-  updateProjectList();
-};
-
-const createProject = () => {
-  const newProBtn = document.getElementById('prsubmit');
-  newProBtn.addEventListener('click', ()=>{
-    projectConstructor();
-  });
-};
 
 const allProjects = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  // const EXISTING_DATA = getLocal();
+
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
     const projectWrapper = document.createElement('div');
     const projectTitle = document.createElement('div');
@@ -116,46 +77,51 @@ const colors = () => {
       }
     }
   }
-}
+};
 
 const todoColors = () => {
   const pr = document.querySelectorAll('.prs');
   for (let i = 0; i < pr.length; i += 1) {
     pr[i].addEventListener('click', () => {
-      colors()
+      colors();
     });
   }
 };
 
 const getEditBtn = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  // const EXISTING_DATA = getLocal();
+
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
-    for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1){
+    for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
       // if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
-        const todoIcons = document.querySelectorAll('.todoIcons');
-        for (let l = 0; l < todoIcons.length; l += 1) {
-          todoIcons[l].addEventListener('click', () => {
-            editTodoForm.classList.toggle('hide');
-    
-            document.getElementById('editTitle').value = EXISTING_DATA[j].todos[k].title;
-            document.getElementById('editDate').value = EXISTING_DATA[j].todos[k].date;
-            document.getElementById('editDesc').value = EXISTING_DATA[j].todos[k].description;
-            document.getElementById('editPriority').value = EXISTING_DATA[j].todos[k].priority;
-    
-            document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'));
-            console.log("edit cliek")
-          });
+      const todoIcons = document.querySelectorAll('.todoIcons');
+      for (let l = 0; l < todoIcons.length; l += 1) {
+        todoIcons[l].addEventListener('click', () => {
+          editTodoForm.classList.toggle('hide');
+
+          document.getElementById('editTitle').value = EXISTING_DATA[j].todos[k].title;
+          document.getElementById('editDate').value = EXISTING_DATA[j].todos[k].date;
+          document.getElementById('editDesc').value = EXISTING_DATA[j].todos[k].description;
+          document.getElementById('editPriority').value = EXISTING_DATA[j].todos[k].priority;
+
+          document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'));
+          console.log('edit cliek');
+        });
         // }
       }
     }
   }
-}
-
-
+};
 
 const displayTodos = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  // const EXISTING_DATA = getLocal();
+
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     if (document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title) {
       for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
+        todoColors();
         const todoTitle = document.createElement('p');
         const todoDiv = document.createElement('div');
         const date = document.createElement('p');
@@ -180,7 +146,6 @@ const displayTodos = () => {
         document.getElementById('todosContainer').appendChild(todoDiv);
         moreIcon.addEventListener('click', () => {
           editTodoForm.classList.toggle('hide');
-
           document.getElementById('editTitle').value = EXISTING_DATA[j].todos[k].title;
           document.getElementById('editDate').value = EXISTING_DATA[j].todos[k].date;
           document.getElementById('editDesc').value = EXISTING_DATA[j].todos[k].description;
@@ -192,8 +157,6 @@ const displayTodos = () => {
     }
   }
 };
-
-
 
 const mainProjectDisplay = () => {
   const allSidebarprojects = document.querySelectorAll('.prs');
@@ -226,9 +189,36 @@ const deleteEvent = () => {
   }
 };
 
+const updateProjectList = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  // const EXISTING_DATA = getLocal();
+  const projects = document.querySelector('.projects');
+  const projectTitle = document.createElement('div');
+  const projectMain = document.createElement('div');
+  const delBtn = document.createElement('div');
+
+  const last = EXISTING_DATA.pop();
+
+  projectMain.classList.add('prs', 'col-8');
+  delBtn.classList.add('far', 'fa-trash-alt', 'col-2');
+  projectTitle.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle');
+  delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center');
+
+  projectMain.innerHTML = last.title;
+
+  projectTitle.appendChild(projectMain);
+  projectTitle.appendChild(delBtn);
+  projects.appendChild(projectTitle);
+  mainProjectDisplay();
+  deleteEvent();
+};
+
 // todo starts here
 
 const updateTodoList = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  // const EXISTING_DATA = getLocal();
+
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     if (document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title) {
       const last = EXISTING_DATA[j].todos.pop();
@@ -245,7 +235,7 @@ const updateTodoList = () => {
       todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between', 'col-12');
       buttonsDiv.classList.add('btnsDiv', 'd-fle');
       todoDiv.setAttribute('value', last.priority);
-      
+
       todoTitle.innerHTML = last.title;
       todoDate.innerHTML = last.date;
 
@@ -256,15 +246,43 @@ const updateTodoList = () => {
         buttonsDiv.appendChild(moreIcon);
         todoDiv.appendChild(buttonsDiv);
         document.getElementById('todosContainer').appendChild(todoDiv);
-        colors()
-        updateDeleteBtn()
-        getEditBtn()
+        colors();
+        updateDeleteBtn();
+        getEditBtn();
       }
     }
   }
 };
+const projectConstructor = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+
+  // const EXISTING_DATA = getLocal();
+  const project = projectFactory(
+    document.getElementById('prtitle').value,
+    document.getElementById('prdesc').value,
+    document.getElementById('prdate').value,
+    document.getElementById('prpriority').value,
+    false,
+    [],
+  );
+  projectArr.push(project);
+  EXISTING_DATA.push(project);
+  localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
+  updateProjectList();
+};
+
+const createProject = () => {
+  const newProBtn = document.getElementById('prsubmit');
+  newProBtn.addEventListener('click', () => {
+    projectConstructor();
+  });
+};
+
 
 const todoConstructor = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  // const EXISTING_DATA = getLocal();
+
   const newToDo = todoFactory(
     document.getElementById('title').value,
     document.getElementById('desc').value,
@@ -285,7 +303,6 @@ const todoConstructor = () => {
   }
 };
 
-
 const createTodo = () => {
   const todoBtn = document.getElementById('submit');
   todoBtn.addEventListener('click', () => {
@@ -297,15 +314,17 @@ const createTodo = () => {
     }
 
     todoConstructor();
-    
+
     document.querySelector('form').reset();
     document.querySelector('form').classList.add('hide');
     updateTodoList();
   });
-
 };
 
 const editForm = () => {
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+
+  // const EXISTING_DATA = getLocal();
   const editSubmit = document.querySelector('#editSubmit');
   editSubmit.addEventListener('click', () => {
     for (let j = 0; j < EXISTING_DATA.length; j += 1) {
@@ -351,7 +370,7 @@ const updateDeleteBtn = () => {
       });
     }
   }
-}
+};
 
 const completeEvent = () => {
   const pr = document.querySelectorAll('.prs');
