@@ -163,6 +163,9 @@ const deleteEvent = () => {
     delbtns[i].addEventListener('click', (e) => {
       e.stopPropagation();
       deleteProject(i);
+      document.querySelector('.projects').innerHTML = ''
+      document.querySelector('.projectList').classList.remove('hide')
+      allProjects()
     });
   }
 };
@@ -176,6 +179,7 @@ const updateProjectList = () => {
   const delBtn = document.createElement('div');
 
   const last = EXISTING_DATA.pop();
+  
 
   projectMain.classList.add('prs', 'col-8');
   delBtn.classList.add('far', 'fa-trash-alt', 'col-2');
@@ -334,6 +338,9 @@ const todoDelete = () => {
         for (let j = 0; j < todoDelBtn.length; j += 1) {
           todoDelBtn[j].addEventListener('click', () => {
             deleteTodo(j);
+            document.getElementById('todosContainer').innerHTML = ''
+            displayTodos()
+            colors()
           });
         }
       }

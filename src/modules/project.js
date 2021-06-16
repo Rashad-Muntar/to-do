@@ -19,12 +19,10 @@ const defProject = () => {
 };
 
 const deleteProject = (index) => {
-  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
-
   EXISTING_DATA.splice(index, 1);
   localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-  window.location.reload();
 };
 
 const projectConstructor = () => {
