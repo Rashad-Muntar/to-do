@@ -229,7 +229,7 @@ const updateTodoList = () => {
       const buttonsDiv = document.createElement('div');
       const moreIcon = document.createElement('span');
 
-      delIcon.classList.add('far', 'fa-trash-alt', 'todoIcons', 'todoDelIcon');
+      delIcon.classList.add('far', 'fa-trash-alt', 'todoDelIcon');
       moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons');
       todoTitle.classList.add('todoTitle');
       todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between', 'col-12');
@@ -275,7 +275,9 @@ const createProject = () => {
   const newProBtn = document.getElementById('prsubmit');
   newProBtn.addEventListener('click', () => {
     projectConstructor();
+    document.querySelector('.prForm').reset();
   });
+  
 };
 
 

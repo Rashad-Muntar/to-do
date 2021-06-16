@@ -8,7 +8,7 @@ const todoFactory = (title, description, date, priority, completed) => ({
 // } 
 
 const deleteTodo = (index) => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
@@ -18,7 +18,7 @@ const deleteTodo = (index) => {
 };
 
 const completeTodo = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
