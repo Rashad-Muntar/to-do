@@ -121,7 +121,6 @@ const displayTodos = () => {
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     if (document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title) {
       for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
-        todoColors();
         const todoTitle = document.createElement('p');
         const todoDiv = document.createElement('div');
         const date = document.createElement('p');
@@ -155,27 +154,6 @@ const displayTodos = () => {
         });
       }
     }
-  }
-};
-
-const mainProjectDisplay = () => {
-  const allSidebarprojects = document.querySelectorAll('.prs');
-  for (let i = 0; i < allSidebarprojects.length; i += 1) {
-    allSidebarprojects[i].addEventListener('click', () => {
-      const projectTitle = document.createElement('h3');
-      projectTitle.setAttribute('id', 'prTitle');
-
-      projectTitle.classList.add('p-5');
-      projectTitle.innerHTML = allSidebarprojects[i].textContent;
-
-      toggleProjectTitle();
-
-      mainContent.appendChild(projectTitle);
-      document.querySelector('.todoAddBtn').classList.remove('hide');
-
-      toggleMainRightContent();
-      displayTodos();
-    });
   }
 };
 
@@ -246,8 +224,8 @@ const updateTodoList = () => {
         buttonsDiv.appendChild(moreIcon);
         todoDiv.appendChild(buttonsDiv);
         document.getElementById('todosContainer').appendChild(todoDiv);
-        colors();
         updateDeleteBtn();
+        colors();
         getEditBtn();
       }
     }
@@ -371,6 +349,30 @@ const updateDeleteBtn = () => {
         deleteTodo(j);
       });
     }
+  }
+};
+
+
+const mainProjectDisplay = () => {
+  const allSidebarprojects = document.querySelectorAll('.prs');
+  for (let i = 0; i < allSidebarprojects.length; i += 1) {
+    allSidebarprojects[i].addEventListener('click', () => {
+      const projectTitle = document.createElement('h3');
+      projectTitle.setAttribute('id', 'prTitle');
+
+      projectTitle.classList.add('p-5');
+      projectTitle.innerHTML = allSidebarprojects[i].textContent;
+
+      toggleProjectTitle();
+
+      mainContent.appendChild(projectTitle);
+      document.querySelector('.todoAddBtn').classList.remove('hide');
+
+      toggleMainRightContent();
+      // updateDeleteBtn();
+      todoColors();
+      displayTodos();
+    });
   }
 };
 
