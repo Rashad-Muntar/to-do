@@ -128,7 +128,7 @@ const displayTodos = () => {
         const buttonsDiv = document.createElement('div');
         const moreIcon = document.createElement('span');
 
-        delIcon.classList.add('far', 'fa-trash-alt', 'todoIcons', 'todoDelIcon');
+        delIcon.classList.add('far', 'fa-trash-alt', 'todoDelIcon');
         moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons');
         todoTitle.classList.add('todoTitle');
         todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between', 'col-12');
@@ -223,7 +223,7 @@ const updateTodoList = () => {
 
       if (document.getElementById('todosContainer')) {
         todoDiv.appendChild(todoTitle);
-        todoDiv.appendChild(date);
+        todoDiv.appendChild(todoDate);
         buttonsDiv.appendChild(delIcon);
         buttonsDiv.appendChild(moreIcon);
         todoDiv.appendChild(buttonsDiv);
@@ -354,6 +354,9 @@ const updateDeleteBtn = () => {
     for (let j = 0; j < todoDelBtn.length; j += 1) {
       todoDelBtn[j].addEventListener('click', () => {
         deleteTodo(j);
+        document.getElementById('todosContainer').innerHTML = ''
+        displayTodos()
+        colors()
       });
     }
   }
