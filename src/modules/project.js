@@ -18,12 +18,12 @@ const defProject = () => {
   }
 };
 
-const deleteProject = (index) => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
-  EXISTING_DATA.splice(index, 1);
-  localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-};
+// const deleteProject = (index) => {
+//   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects'));
+//   // const EXISTING_DATA = getLocal();
+//   EXISTING_DATA.splice(index, 1);
+//   localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
+// };
 
 const projectConstructor = () => {
   let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
@@ -42,5 +42,5 @@ const projectConstructor = () => {
 };
 
 export {
-  projectFactory, deleteProject, projectConstructor, defProject,
+  projectFactory, projectConstructor, defProject,
 };

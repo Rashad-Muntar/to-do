@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import { projectFactory, deleteProject } from './modules/project';
+import { projectFactory } from './modules/project';
 // import getLocal
 import { todoFactory, deleteTodo, completeTodo } from './modules/todo';
 
@@ -41,6 +41,7 @@ const allProjects = () => {
     projectWrapper.appendChild(projectTitle);
     projectWrapper.appendChild(delBtn);
     sideBarproject.appendChild(projectWrapper);
+    deleteEvent()
   }
 };
 
@@ -158,15 +159,21 @@ const displayTodos = () => {
 };
 
 const deleteEvent = () => {
-  const delbtns = document.querySelectorAll('.projectDelBtn');
-  for (let i = 0; i < delbtns.length; i += 1) {
-    delbtns[i].addEventListener('click', (e) => {
-      e.stopPropagation();
-      deleteProject(i);
-      document.querySelector('.projects').innerHTML = ''
-      document.querySelector('.projectList').classList.remove('hide')
-      allProjects()
-    });
+  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects'));
+  if (document.querySelector('.projectList').contains(document.querySelector('.projects'))) {
+    const delbtns = document.querySelectorAll('.projectDelBtn');
+    for (let i = 0; i < delbtns.length; i += 1) {
+      delbtns[i].addEventListener('click', (e) => {
+        e.stopPropagation();
+        EXISTING_DATA.splice(i, 1);
+        localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
+        document.querySelector('.projects').innerHTML = ''
+        document.querySelector('.projectList').classList.remove('hide')
+        allProjects()
+        
+      });
+      
+    }
   }
 };
 
