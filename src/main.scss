@@ -1,0 +1,255 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  background-color: #dc3545;
+  padding: 0;
+  margin: 0;
+}
+
+#navbarNav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerGroupOne {
+  display: flex;
+  margin-left: 20px;
+}
+
+.headerGroupTwo {
+  float: right;
+  margin-right: 20px;
+}
+
+.fas,
+.far {
+  color: black;
+}
+
+form {
+  padding: 20px;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+
+  #content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .todoAddBtn i {
+      margin: 10px;
+    }
+
+    .side-bar {
+      width: 25%;
+      height: 100%;
+      background: rgb(226, 226, 226);
+      padding: 50px 20px;
+
+      .icons {
+        width: 95%;
+        margin: 15px 0;
+        padding: 7px 5px;
+        border-radius: 2px;
+        cursor: pointer;
+
+        i {
+          margin-right: 10px;
+          font-size: 1.5em;
+          color: gray;
+        }
+
+        &:hover {
+          background-color: rgb(241, 241, 241);
+        }
+      }
+
+      .project {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .projectDelBtn,
+      .prs {
+        cursor: pointer;
+      }
+
+      .projectTitle {
+        display: flex;
+        padding: 7px;
+
+        &:hover {
+          background-color: rgb(255, 235, 238);
+        }
+      }
+    }
+
+    .fa-trash-alt:hover {
+      color: rgb(209, 80, 70);
+    }
+
+    #main-right {
+      background-color: white;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+    }
+
+    #prTitle {
+      font-weight: bold;
+      color: #dc3545;
+      display: flex;
+      justify-content: center;
+    }
+
+    .todoAddBtn {
+      margin: 10px;
+    }
+
+    h3 {
+      display: flex;
+      align-content: center;
+      background: rgb(226, 226, 226);
+    }
+  }
+}
+
+#todosWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+
+  #toggleTodoForm {
+    width: 33.33%;
+    padding: 10px;
+  }
+
+  #todosContainer {
+    width: 33.33%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  #todoDisplay {
+    width: 33.33%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 10px;
+    margin-top: 0;
+    height: 100px;
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+.todoDiv {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+.todoTitle {
+  padding: 5px;
+  margin: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.todoDelIcon {
+  padding: 5px;
+  margin: 0 20px 0 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.newTodoForm,
+.editTodoForm {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  background: rgb(255, 240, 242);
+
+  input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  select {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+}
+
+// public classes
+.hide {
+  display: none;
+}
+
+.todoIcons {
+  font-size: 1.3em;
+}
+
+.fa-info-circle:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.completedTodo {
+  text-decoration: line-through;
+  color: rgb(230, 230, 230);
+  opacity: 0.6;
+}
+
+.medium {
+  background-color: goldenrod;
+}
+
+.low {
+  background-color: green;
+}
+
+.high {
+  background-color: #dc3545;
+}
+
+#projectTitle {
+  width: 100%;
+  margin-left: 15px;
+}
