@@ -1,9 +1,9 @@
 /* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
+
 import { projectFactory } from './modules/project';
-// import getLocal
 import { todoFactory, deleteTodo, completeTodo } from './modules/todo';
 
-// let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 const projectArr = [];
 const sideBarproject = document.querySelector('.projects');
 const mainContent = document.getElementById('projectTitle');
@@ -12,7 +12,6 @@ const todoForm = document.querySelector('.newTodoForm');
 const editTodoForm = document.querySelector('.editTodoForm');
 const todoTitleDisplay = document.createElement('p');
 const todoDate = document.createElement('p');
-
 todoTitleDisplay.classList.add('todoTitleDisplay');
 
 const todoFormDisplay = () => {
@@ -21,22 +20,34 @@ const todoFormDisplay = () => {
   });
 };
 
+const deleteEvent = () => {
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects'));
+  if (document.querySelector('.projectList').contains(document.querySelector('.projects'))) {
+    const delbtns = document.querySelectorAll('.projectDelBtn');
+    for (let i = 0; i < delbtns.length; i += 1) {
+      delbtns[i].addEventListener('click', (e) => {
+        e.stopPropagation();
+        EXISTING_DATA.splice(i, 1);
+        localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
+        document.querySelector('.projects').innerHTML = '';
+        document.querySelector('.projectList').classList.remove('hide');
+        allProjects();
+      });
+    }
+  }
+};
+
 const allProjects = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
-
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
     const projectWrapper = document.createElement('div');
     const projectTitle = document.createElement('div');
     const delBtn = document.createElement('div');
-
     delBtn.classList.add('far', 'fa-trash-alt');
     projectWrapper.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle');
     delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center');
     projectTitle.classList.add('prs');
-
     projectTitle.innerHTML = EXISTING_DATA[i].title;
-
     projectWrapper.appendChild(projectTitle);
     projectWrapper.appendChild(delBtn);
     sideBarproject.appendChild(projectWrapper);
@@ -90,24 +101,18 @@ const todoColors = () => {
 
 const getEditBtn = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
-      // if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
       const todoIcons = document.querySelectorAll('.todoIcons');
       for (let l = 0; l < todoIcons.length; l += 1) {
         todoIcons[l].addEventListener('click', () => {
           editTodoForm.classList.toggle('hide');
-
           document.getElementById('editTitle').value = EXISTING_DATA[j].todos[k].title;
           document.getElementById('editDate').value = EXISTING_DATA[j].todos[k].date;
           document.getElementById('editDesc').value = EXISTING_DATA[j].todos[k].description;
           document.getElementById('editPriority').value = EXISTING_DATA[j].todos[k].priority;
-
           document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'));
-          console.log('edit click');
         });
-        // }
       }
     }
   }
@@ -115,7 +120,6 @@ const getEditBtn = () => {
 
 const displayTodos = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     if (document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title) {
       for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
@@ -125,13 +129,11 @@ const displayTodos = () => {
         const delIcon = document.createElement('span');
         const buttonsDiv = document.createElement('div');
         const moreIcon = document.createElement('span');
-
         delIcon.classList.add('far', 'fa-trash-alt', 'todoDelIcon');
         moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons');
         todoTitle.classList.add('todoTitle');
         todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between', 'col-12');
         buttonsDiv.classList.add('btnsDiv', 'd-fle');
-
         todoTitle.innerHTML = EXISTING_DATA[j].todos[k].title;
         date.innerHTML = EXISTING_DATA[j].todos[k].date;
         todoDiv.setAttribute('value', EXISTING_DATA[j].todos[k].priority);
@@ -147,7 +149,6 @@ const displayTodos = () => {
           document.getElementById('editDate').value = EXISTING_DATA[j].todos[k].date;
           document.getElementById('editDesc').value = EXISTING_DATA[j].todos[k].description;
           document.getElementById('editPriority').value = EXISTING_DATA[j].todos[k].priority;
-
           document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'));
         });
       }
@@ -155,40 +156,36 @@ const displayTodos = () => {
   }
 };
 
-const deleteEvent = () => {
-  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects'));
-  if (document.querySelector('.projectList').contains(document.querySelector('.projects'))) {
-    const delbtns = document.querySelectorAll('.projectDelBtn');
-    for (let i = 0; i < delbtns.length; i += 1) {
-      delbtns[i].addEventListener('click', (e) => {
-        e.stopPropagation();
-        EXISTING_DATA.splice(i, 1);
-        localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-        document.querySelector('.projects').innerHTML = '';
-        document.querySelector('.projectList').classList.remove('hide');
-        allProjects();
-      });
-    }
+const mainProjectDisplay = () => {
+  const allSidebarprojects = document.querySelectorAll('.prs');
+  for (let i = 0; i < allSidebarprojects.length; i += 1) {
+    allSidebarprojects[i].addEventListener('click', () => {
+      const projectTitle = document.createElement('h3');
+      projectTitle.setAttribute('id', 'prTitle');
+      projectTitle.classList.add('p-5');
+      projectTitle.innerHTML = allSidebarprojects[i].textContent;
+      toggleProjectTitle();
+      mainContent.appendChild(projectTitle);
+      document.querySelector('.todoAddBtn').classList.remove('hide');
+      toggleMainRightContent();
+      todoColors();
+      displayTodos();
+    });
   }
 };
 
 const updateProjectList = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-
   const projects = document.querySelector('.projects');
   const projectTitle = document.createElement('div');
   const projectMain = document.createElement('div');
   const delBtn = document.createElement('div');
-
   const last = EXISTING_DATA.pop();
-
   projectMain.classList.add('prs', 'col-8');
   delBtn.classList.add('far', 'fa-trash-alt', 'col-2');
   projectTitle.classList.add('d-flex', 'justify-content-between', 'col-12', 'projectTitle');
   delBtn.classList.add('projectDelBtn', 'col-3', 'd-flex', 'justify-content-center');
-
   projectMain.innerHTML = last.title;
-
   projectTitle.appendChild(projectMain);
   projectTitle.appendChild(delBtn);
   projects.appendChild(projectTitle);
@@ -196,32 +193,60 @@ const updateProjectList = () => {
   deleteEvent();
 };
 
-// todo starts here
+const updateDeleteBtn = () => {
+  if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
+    const todoDelBtn = document.querySelectorAll('.todoDelIcon');
+    for (let j = 0; j < todoDelBtn.length; j += 1) {
+      todoDelBtn[j].addEventListener('click', () => {
+        deleteTodo(j);
+        document.getElementById('todosContainer').innerHTML = '';
+        displayTodos();
+        colors();
+      });
+    }
+  }
+};
+
+const editForm = () => {
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const editSubmit = document.querySelector('#editSubmit');
+  editSubmit.addEventListener('click', () => {
+    for (let j = 0; j < EXISTING_DATA.length; j += 1) {
+      for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
+        if (document.getElementById('editTitle').value === ''
+                || document.getElementById('editDate').value === ''
+                || document.getElementById('editDesc').value === ''
+                || document.getElementById('editPriority').value === '') {
+          return false;
+        }
+        EXISTING_DATA[j].todos[k].title = document.getElementById('editTitle').value;
+        EXISTING_DATA[j].todos[k].date = document.getElementById('editDate').value;
+        EXISTING_DATA[j].todos[k].description = document.getElementById('editDesc').value;
+        EXISTING_DATA[j].todos[k].priority = document.getElementById('editPriority').value;
+        localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
+      }
+    }
+  });
+};
 
 const updateTodoList = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
-
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     if (document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title) {
       const last = EXISTING_DATA[j].todos.pop();
       const todoTitle = document.createElement('p');
       const todoDiv = document.createElement('div');
-      const date = document.createElement('p');
       const delIcon = document.createElement('span');
       const buttonsDiv = document.createElement('div');
       const moreIcon = document.createElement('span');
-
       delIcon.classList.add('far', 'fa-trash-alt', 'todoDelIcon');
       moreIcon.classList.add('fas', 'fa-info-circle', 'todoIcons');
       todoTitle.classList.add('todoTitle');
       todoDiv.classList.add('todoDiv', 'd-flex', 'justify-content-between', 'col-12');
       buttonsDiv.classList.add('btnsDiv', 'd-fle');
       todoDiv.setAttribute('value', last.priority);
-
       todoTitle.innerHTML = last.title;
       todoDate.innerHTML = last.date;
-
       if (document.getElementById('todosContainer')) {
         todoDiv.appendChild(todoTitle);
         todoDiv.appendChild(todoDate);
@@ -239,8 +264,6 @@ const updateTodoList = () => {
 };
 const projectConstructor = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-
-  // const EXISTING_DATA = getLocal();
   const project = projectFactory(
     document.getElementById('prtitle').value,
     document.getElementById('prdesc').value,
@@ -265,8 +288,6 @@ const createProject = () => {
 
 const todoConstructor = () => {
   const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
-
   const newToDo = todoFactory(
     document.getElementById('title').value,
     document.getElementById('desc').value,
@@ -298,33 +319,9 @@ const createTodo = () => {
     }
 
     todoConstructor();
-
     document.querySelector('form').reset();
     document.querySelector('form').classList.add('hide');
     updateTodoList();
-  });
-};
-
-const editForm = (e) => {
-  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-
-  const editSubmit = document.querySelector('#editSubmit');
-  editSubmit.addEventListener('click', () => {
-    for (let j = 0; j < EXISTING_DATA.length; j += 1) {
-      for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
-        if (document.getElementById('editTitle').value === ''
-                || document.getElementById('editDate').value === ''
-                || document.getElementById('editDesc').value === ''
-                || document.getElementById('editPriority').value === '') {
-          return false;
-        }
-        EXISTING_DATA[j].todos[k].title = document.getElementById('editTitle').value;
-        EXISTING_DATA[j].todos[k].date = document.getElementById('editDate').value;
-        EXISTING_DATA[j].todos[k].description = document.getElementById('editDesc').value;
-        EXISTING_DATA[j].todos[k].priority = document.getElementById('editPriority').value;
-        localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-      }
-    }
   });
 };
 
@@ -343,43 +340,6 @@ const todoDelete = () => {
           });
         }
       }
-    });
-  }
-};
-
-const updateDeleteBtn = () => {
-  if (document.getElementById('todosContainer').contains(document.querySelector('.todoDiv'))) {
-    const todoDelBtn = document.querySelectorAll('.todoDelIcon');
-    for (let j = 0; j < todoDelBtn.length; j += 1) {
-      todoDelBtn[j].addEventListener('click', () => {
-        deleteTodo(j);
-        document.getElementById('todosContainer').innerHTML = '';
-        displayTodos();
-        colors();
-      });
-    }
-  }
-};
-
-const mainProjectDisplay = () => {
-  const allSidebarprojects = document.querySelectorAll('.prs');
-  for (let i = 0; i < allSidebarprojects.length; i += 1) {
-    allSidebarprojects[i].addEventListener('click', () => {
-      const projectTitle = document.createElement('h3');
-      projectTitle.setAttribute('id', 'prTitle');
-
-      projectTitle.classList.add('p-5');
-      projectTitle.innerHTML = allSidebarprojects[i].textContent;
-
-      toggleProjectTitle();
-
-      mainContent.appendChild(projectTitle);
-      document.querySelector('.todoAddBtn').classList.remove('hide');
-
-      toggleMainRightContent();
-      // updateDeleteBtn();
-      todoColors();
-      displayTodos();
     });
   }
 };
