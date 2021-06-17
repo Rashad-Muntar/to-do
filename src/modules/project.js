@@ -7,7 +7,7 @@ const projectFactory = (title, description, date, priority, completed, todos) =>
 // let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 
 const defProject = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   const defaultProject = projectFactory('Default Project', 'Default project one', '08/02/2021', 'Medium', false, []);
@@ -26,7 +26,7 @@ const defProject = () => {
 // };
 
 const projectConstructor = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   const project = projectFactory(

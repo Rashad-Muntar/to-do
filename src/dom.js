@@ -21,9 +21,8 @@ const todoFormDisplay = () => {
   });
 };
 
-
 const allProjects = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   for (let i = 0; i < EXISTING_DATA.length; i += 1) {
@@ -41,7 +40,7 @@ const allProjects = () => {
     projectWrapper.appendChild(projectTitle);
     projectWrapper.appendChild(delBtn);
     sideBarproject.appendChild(projectWrapper);
-    deleteEvent()
+    deleteEvent();
   }
 };
 
@@ -90,8 +89,7 @@ const todoColors = () => {
 };
 
 const getEditBtn = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     for (let k = 0; k < EXISTING_DATA[j].todos.length; k += 1) {
@@ -107,7 +105,7 @@ const getEditBtn = () => {
           document.getElementById('editPriority').value = EXISTING_DATA[j].todos[k].priority;
 
           document.getElementById('todosWrapper').appendChild(document.getElementById('todoDisplay'));
-          console.log('edit cliek');
+          console.log('edit click');
         });
         // }
       }
@@ -116,8 +114,7 @@ const getEditBtn = () => {
 };
 
 const displayTodos = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
     if (document.querySelector('#prTitle').textContent === EXISTING_DATA[j].title) {
@@ -159,7 +156,7 @@ const displayTodos = () => {
 };
 
 const deleteEvent = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects'));
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects'));
   if (document.querySelector('.projectList').contains(document.querySelector('.projects'))) {
     const delbtns = document.querySelectorAll('.projectDelBtn');
     for (let i = 0; i < delbtns.length; i += 1) {
@@ -167,26 +164,23 @@ const deleteEvent = () => {
         e.stopPropagation();
         EXISTING_DATA.splice(i, 1);
         localStorage.setItem('Projects', JSON.stringify(EXISTING_DATA));
-        document.querySelector('.projects').innerHTML = ''
-        document.querySelector('.projectList').classList.remove('hide')
-        allProjects()
-        
+        document.querySelector('.projects').innerHTML = '';
+        document.querySelector('.projectList').classList.remove('hide');
+        allProjects();
       });
-      
     }
   }
 };
 
 const updateProjectList = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
-  // const EXISTING_DATA = getLocal();
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+
   const projects = document.querySelector('.projects');
   const projectTitle = document.createElement('div');
   const projectMain = document.createElement('div');
   const delBtn = document.createElement('div');
 
   const last = EXISTING_DATA.pop();
-  
 
   projectMain.classList.add('prs', 'col-8');
   delBtn.classList.add('far', 'fa-trash-alt', 'col-2');
@@ -205,7 +199,7 @@ const updateProjectList = () => {
 // todo starts here
 
 const updateTodoList = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   for (let j = 0; j < EXISTING_DATA.length; j += 1) {
@@ -238,12 +232,13 @@ const updateTodoList = () => {
         updateDeleteBtn();
         colors();
         getEditBtn();
+        editForm();
       }
     }
   }
 };
 const projectConstructor = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 
   // const EXISTING_DATA = getLocal();
   const project = projectFactory(
@@ -266,12 +261,10 @@ const createProject = () => {
     projectConstructor();
     document.querySelector('.prForm').reset();
   });
-  
 };
 
-
 const todoConstructor = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
   // const EXISTING_DATA = getLocal();
 
   const newToDo = todoFactory(
@@ -312,10 +305,9 @@ const createTodo = () => {
   });
 };
 
-const editForm = () => {
-  let EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
+const editForm = (e) => {
+  const EXISTING_DATA = JSON.parse(localStorage.getItem('Projects')) || [];
 
-  // const EXISTING_DATA = getLocal();
   const editSubmit = document.querySelector('#editSubmit');
   editSubmit.addEventListener('click', () => {
     for (let j = 0; j < EXISTING_DATA.length; j += 1) {
@@ -345,9 +337,9 @@ const todoDelete = () => {
         for (let j = 0; j < todoDelBtn.length; j += 1) {
           todoDelBtn[j].addEventListener('click', () => {
             deleteTodo(j);
-            document.getElementById('todosContainer').innerHTML = ''
-            displayTodos()
-            colors()
+            document.getElementById('todosContainer').innerHTML = '';
+            displayTodos();
+            colors();
           });
         }
       }
@@ -361,14 +353,13 @@ const updateDeleteBtn = () => {
     for (let j = 0; j < todoDelBtn.length; j += 1) {
       todoDelBtn[j].addEventListener('click', () => {
         deleteTodo(j);
-        document.getElementById('todosContainer').innerHTML = ''
-        displayTodos()
-        colors()
+        document.getElementById('todosContainer').innerHTML = '';
+        displayTodos();
+        colors();
       });
     }
   }
 };
-
 
 const mainProjectDisplay = () => {
   const allSidebarprojects = document.querySelectorAll('.prs');
