@@ -3,19 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": { 
-     "dev": "webpack --mode development",
-     "build": "webpack --mode production --watch", 
-     "start": "webpack-dev-server --mode development --open"
-    },
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production --watch",
+    "start": "webpack-dev-server --mode development --open",
+    "testwatch": "jest --watchAll",
+    "watch": "webpack --watch",
+    "test": "jest"
+  },
   "author": "Rashad and Railon",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.2.6",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
+    "jest": "^27.0.5",
     "sass": "^1.34.0",
     "sass-loader": "^12.0.0",
     "style-loader": "^2.0.0",
@@ -28,5 +35,17 @@
   },
   "dependencies": {
     "date-fns": "^2.22.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "moduleFileExtensions": [
+      "js",
+      "mjs"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.mjs$": "babel-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   }
 }
