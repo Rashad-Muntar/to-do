@@ -14,7 +14,7 @@
   "moduleDirectories": [
     "node_modules",
     "src"
-],
+  ],
   "author": "Rashad and Railon",
   "license": "ISC",
   "devDependencies": {
@@ -38,6 +38,7 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
+    "@jest/globals": "^27.0.5",
     "date-fns": "^2.22.1"
   },
   "jest": {

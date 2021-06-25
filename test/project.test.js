@@ -1,15 +1,17 @@
-const { test, expect } = require("@jest/globals")
+/* eslint-disable new-cap */
 
-import { projectFactory } from "../src/modules/project"
+import { projectFactory } from '../src/modules/project';
 
-const project = new projectFactory('Jest', "testing Jest", '12-12-2020', 'High', false);
+const { test, expect } = require('@jest/globals');
+
+const project = new projectFactory('Jest', 'testing Jest', '12-12-2020', 'High', false);
 
 test('It has a name of Learn', () => {
   expect(project.title).toBe('Jest');
 });
 
 test('It has a description of testing Jest', () => {
-    expect(project.description).toBe("testing Jest");
+  expect(project.description).toBe('testing Jest');
 });
 
 test('It is active project when it is created', () => {
@@ -17,10 +19,10 @@ test('It is active project when it is created', () => {
 });
 
 test('It is has a date', () => {
-    expect(project.date).toBe('12-12-2020');
-  });
+  expect(project.date).toBe('12-12-2020');
+});
 
-  test('It is has a priority', () => {
-    expect(project.priority).toBe('High');
-  });
-  
+test('It is has a priority', () => {
+  expect(project.priority).toBe('High');
+});
+/* eslint-enable new-cap */
