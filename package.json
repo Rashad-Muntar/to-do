@@ -11,6 +11,10 @@
     "watch": "webpack --watch",
     "test": "jest"
   },
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+],
   "author": "Rashad and Railon",
   "license": "ISC",
   "devDependencies": {
