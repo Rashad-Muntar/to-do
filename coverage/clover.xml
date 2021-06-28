@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1624661192154" clover="3.2.0">
-  <project timestamp="1624661192154" name="All files">
+<coverage generated="1624662474279" clover="3.2.0">
+  <project timestamp="1624662474279" name="All files">
     <metrics statements="25" coveredstatements="6" conditionals="12" coveredconditionals="0" methods="7" coveredmethods="2" elements="44" coveredelements="8" complexity="0" loc="25" ncloc="25" packages="1" files="2" classes="2"/>
     <file name="project.js" path="/home/railon/Projects/JavaScript/to-do/src/modules/project.js">
       <metrics statements="11" coveredstatements="3" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="1"/>
